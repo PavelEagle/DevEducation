@@ -25,8 +25,8 @@ namespace ProjectHomework
             int rectangleLength = 5, rectangleHeight = 4;
             string outerFrame = "O", innerContent = "X";
 
-            double expected = {{O,O,O,O,O},{O,X,X,X,O},{O,X,X,X,O},{O,O,O,O,O}};
-            double actual = hw3.RectangleDrawing(rectangleLength, rectangleHeight, outerFrame, innerContent);
+            string[,] expected = {{"O", "O", "O", "O", "O"}, { "O", "X", "X", "X", "O" }, { "O", "X", "X", "X", "O" }, { "O", "O", "O", "O", "O" } };
+            string[,] actual = hw3.RectangleDrawing(rectangleLength, rectangleHeight, outerFrame, innerContent);
             Assert.AreEqual(expected, actual);
         }
 
@@ -40,17 +40,7 @@ namespace ProjectHomework
             int actual = hw3.CountOfDividers(minValue, maxValue, countOfDividers);
             Assert.AreEqual(expected, actual);
         }
-        
-        [Test]
-        public void CountOfDividers_minValue15maxValue20countOfDividers5_countOfNumbers3()
-        {
-            HomeWork3 hw3 = new HomeWork3();
-            int minValue = 15, maxValue = 20, countOfDividers = 5;
-
-            int expected = 3;
-            int actual = hw3.CountOfDividers(minValue, maxValue, countOfDividers);
-            Assert.AreEqual(expected, actual);
-        }
+     
         
         [Test]
         public void DiagonalElementsChange_matrix_result()
@@ -59,7 +49,7 @@ namespace ProjectHomework
             int[,] matrix = {{1,2,3,4,5},{1,2,3,4,5},{1,2,3,4,5},{1,2,3,4,5},{1,2,3,4,5}};
 
             int[,] expected = {{5,2,3,4,1},{1,4,3,2,5},{1,2,3,4,5},{1,4,3,2,5},{5,2,3,4,1}};
-            int actual = hw3.DiagonalElementsChange(matrix);
+            int[,] actual = hw3.DiagonalElementsChange(matrix);
             Assert.AreEqual(expected, actual);
         }
 
@@ -78,10 +68,13 @@ namespace ProjectHomework
         public void TicTacToeCheck_arr_markersCount3()
         {
             Methods mtd = new Methods();
-            int[,] matrix = {{X,+,+,+,+},{+,X,O,O,+},{+,+,X,+,+},{+,+,+,+,+},{+,+,+,+,+}};
+            string[,] matrix = {{"X","+", "+", "+", "+" },{ "+", "X", "O","O", "+" },
+                { "+", "+", "X", "+", "+" }, { "+", "+", "+", "+", "+" }, { "+", "+", "+", "+", "+" } };
+            int row = 0, column = 0;
+            string currentMarker = "X";
 
             int expected = 3;
-            int actual = mtd.TicTacToeCheck(arr);
+            int actual = mtd.TicTacToeCheck(matrix, currentMarker, row, column);
             Assert.AreEqual(expected, actual);
         }
     }

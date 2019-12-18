@@ -8,13 +8,11 @@ namespace ProjectHomework
         {
            HomeWork1 hw1 = new HomeWork1();
             //double[] credit = hw1.CalcCreditPayments(1000, 2, 0.1);
-            HomeWork2 hw2 = new HomeWork2();
-            int[] arrOfNumbers = { 7, 1, 2, 6, -4, 3 };
-            Console.WriteLine(hw2.SumBetweenMinMax(arrOfNumbers));
-            double a = 0.1;
-            int x = 1, y = 1, z = 1;
-            x = true ? ++y : ++z;
-            Console.WriteLine(x +" "+ y +" "+ z);
+            HomeWork3 hw3 = new HomeWork3();
+            int[] arrOfNumbers = { 11, 23, 54, 68, 93, 35, 79, 55 };
+
+            Console.WriteLine(hw3.TicTacToe(5));
+
         }
     }
 

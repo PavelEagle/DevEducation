@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ProjectHomework
 {
-    class Methods
+    public class Methods
     {
         public int[] ArrRandomCreating(int massiveSize)
         {
@@ -27,7 +27,7 @@ namespace ProjectHomework
             Console.WriteLine();
         }
         
-        public int TicTacToeCheck(int[] arr)
+        public int TicTacToeCheck(string[,] field, string currentMarker, int row, int column)
         {
 
             int markersCount = 0;
