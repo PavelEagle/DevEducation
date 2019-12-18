@@ -73,5 +73,16 @@ namespace ProjectHomework
             int[] actual = hw3.GreaterNumberInCentralCell(matrix);
             Assert.AreEqual(expected, actual);
         }
+        
+        [Test]
+        public void TicTacToeCheck_arr_markersCount3()
+        {
+            Methods mtd = new Methods();
+            int[,] matrix = {{X,+,+,+,+},{+,X,O,O,+},{+,+,X,+,+},{+,+,+,+,+},{+,+,+,+,+}};
+
+            int expected = 3;
+            int actual = mtd.TicTacToeCheck(arr);
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
