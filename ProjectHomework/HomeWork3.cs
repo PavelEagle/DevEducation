@@ -4,16 +4,14 @@ using System.Text;
 
 namespace ProjectHomework
 {
-    class HomeWork3
+    public class HomeWork3
     {
-        static int DigitInNumber(int countOfNumbers, char digit)
+        public int DigitInNumber(int[] arrOfNumbers, int digit)
         {
-            int count = 0;
-            Random rnd = new Random();
 
-            for (int i = 0; i < countOfNumbers; i++)
+            for (int i = 0; i < arrOfNumbers.Length; i++)
             {
-                string temp = rnd.Next(10, 100).ToString();
+                temp = arrOfNumbers[i].toString();
                 for (int j = 0; j < temp.Length; j++)
                 {
                     if (temp[j] == digit)
@@ -22,21 +20,21 @@ namespace ProjectHomework
                     }
                 }
             }
-
             return count;
-
         }
 
-        static void RectangleDrawing(int rectangleLength, int rectangleHeight, string outerFrame, string innerContent)
+        public string[] RectangleDrawing(int rectangleLength, int rectangleHeight, string outerFrame, string innerContent)
         {
 
+            string[,] arrOfString = new string [rectangleLength, rectangleHeight];
+            
             for (int i = 0; i < rectangleHeight; i++)
             {
                 if (i == 0 || i == rectangleHeight - 1)
                 {
                     for (int j = 0; j < rectangleLength; j++)
                     {
-                        Console.Write("{0,2} ", outerFrame);
+                        arrOfString [i,j] = outerFrame;
                     }
                 }
                 else
@@ -45,23 +43,24 @@ namespace ProjectHomework
                     {
                         if (j == 0 || j == rectangleLength - 1)
                         {
-                            Console.Write("{0,2} ", outerFrame);
+                            arrOfString [i,j] = outerFrame;
                         }
                         else
                         {
-                            Console.Write("{0,2} ", innerContent);
+                            arrOfString [i,j] = innerContent;
                         }
                     }
                 }
             }
+            retrun arrOfString;
 
         }
 
-        static void CountOfDividers(int minValue, int maxValue, int countOfDividers)
+        public int CountOfDividers(int minValue, int maxValue, int countOfDividers)
         {
+            int countOfNumbers = 0;
             for (int i = minValue; i <= maxValue; i++)
             {
-                string dividers = "";
                 int count = 0;
 
                 for (int j = 1; j <= i; j++)
@@ -69,25 +68,22 @@ namespace ProjectHomework
                     if (i % j == 0)
                     {
                         count++;
-                        dividers += $"{j} ";
                     }
                 }
-                if (count >= countOfDividers)
+                if (count >= countOfDividers) 
                 {
-                    Console.WriteLine($"{i} ({count}) : {dividers}");
-
+                    countOfNumbers++
                 }
-
             }
-
+            return countOfNumbers;
         }
 
-        static void TicTacToe(int fieldSize)
+        public void TicTacToe(int fieldSize)
         {
             Random rnd = new Random();
+            Methods mtd = new Methods()
 
             string[,] field = new string[fieldSize, fieldSize];
-
 
             //Создание массива из +
             for (int i = 0; i < field.GetLength(0); i++)
@@ -95,7 +91,6 @@ namespace ProjectHomework
                 for (int j = 0; j < field.GetLength(1); j++)
                 {
                     field[i, j] = "+";
-                    Console.Write(field[i, j] + " ");
                 }
             }
 
@@ -161,99 +156,7 @@ namespace ProjectHomework
                         Console.WriteLine();
                     }
 
-                    int markersCount = 0;
-
-                    if (row - 1 >= 0 && field[row - 1, column] == currentMarker)
-                    {
-                        markersCount = 2;
-
-                        if (row - 2 >= 0 && field[row - 2, column] == currentMarker)
-                        {
-                            markersCount = 3;
-                        }
-                        else if (row + 1 < 5 && field[row + 1, column] == currentMarker)
-                        {
-                            markersCount = 3;
-                        }
-
-                    }
-
-                    if (row - 1 >= 0 && column + 1 < 5 && field[row - 1, column + 1] == currentMarker)
-                    {
-                        markersCount = 2;
-
-                        if (row - 2 >= 0 && column + 2 < 5 && field[row - 2, column + 2] == currentMarker)
-                        {
-                            markersCount = 3;
-                        }
-                        else if (row + 1 < 5 && column - 1 >= 0 && field[row + 1, column] == currentMarker)
-                        {
-                            markersCount = 3;
-                        }
-
-                    }
-
-                    if (column + 1 >= 5 && field[row, column + 1] == currentMarker)
-                    {
-                        markersCount = 2;
-
-                        if (column + 2 >= 5 && field[row, column + 2] == currentMarker)
-                        {
-                            markersCount = 3;
-                        }
-                        else if (column - 1 >= 0 && field[row, column - 1] == currentMarker)
-                        {
-                            markersCount = 3;
-                        }
-
-                    }
-
-                    if (row + 1 < 5 && column + 1 < 5 && field[row + 1, column + 1] == currentMarker)
-                    {
-                        markersCount = 2;
-
-                        if (row + 2 < 5 && column + 2 < 5 && field[row + 2, column + 2] == currentMarker)
-                        {
-                            markersCount = 3;
-                        }
-                        else if (row - 1 >= 0 && column - 1 >= 0 && field[row - 1, column - 1] == currentMarker)
-                        {
-                            markersCount = 3;
-                        }
-
-                    }
-
-                    if (row + 1 >= 5 && field[row + 1, column] == currentMarker)
-                    {
-                        markersCount = 2;
-
-                        if (row + 2 >= 5 && field[row + 2, column] == currentMarker)
-                        {
-                            markersCount = 3;
-                        }
-                        else if (row - 1 >= 0 && field[row - 1, column] == currentMarker)
-                        {
-                            markersCount = 3;
-                        }
-
-                    }
-
-                    if (row + 1 < 5 && column - 1 >= 0 && field[row + 1, column - 1] == currentMarker)
-                    {
-                        markersCount = 2;
-
-                        if (row + 2 < 5 && column - 2 >= 0 && field[row + 2, column - 2] == currentMarker)
-                        {
-                            markersCount = 3;
-                        }
-                        else if (row - 1 >= 0 && column + 1 >= 0 && field[row - 1, column + 1] == currentMarker)
-                        {
-                            markersCount = 3;
-                        }
-
-                    }
-
-
+                    mtd.TicTacToeCheck(string[] field);
 
                     markedCellsCount++;
                 }
@@ -325,100 +228,8 @@ namespace ProjectHomework
                         }
                         Console.WriteLine();
                     }
-
-                    int markersCount = 0;
-
-                    if (row - 1 >= 0 && field[row - 1, column] == currentMarker)
-                    {
-                        markersCount = 2;
-
-                        if (row - 2 >= 0 && field[row - 2, column] == currentMarker)
-                        {
-                            markersCount = 3;
-                        }
-                        else if (row + 1 < 5 && field[row + 1, column] == currentMarker)
-                        {
-                            markersCount = 3;
-                        }
-
-                    }
-
-                    if (row - 1 >= 0 && column + 1 < 5 && field[row - 1, column + 1] == currentMarker)
-                    {
-                        markersCount = 2;
-
-                        if (row - 2 >= 0 && column + 2 < 5 && field[row - 2, column + 2] == currentMarker)
-                        {
-                            markersCount = 3;
-                        }
-                        else if (row + 1 < 5 && column - 1 >= 0 && field[row + 1, column] == currentMarker)
-                        {
-                            markersCount = 3;
-                        }
-
-                    }
-
-                    if (column + 1 >= 5 && field[row, column + 1] == currentMarker)
-                    {
-                        markersCount = 2;
-
-                        if (column + 2 >= 5 && field[row, column + 2] == currentMarker)
-                        {
-                            markersCount = 3;
-                        }
-                        else if (column - 1 >= 0 && field[row, column - 1] == currentMarker)
-                        {
-                            markersCount = 3;
-                        }
-
-                    }
-
-                    if (row + 1 < 5 && column + 1 < 5 && field[row + 1, column + 1] == currentMarker)
-                    {
-                        markersCount = 2;
-
-                        if (row + 2 < 5 && column + 2 < 5 && field[row + 2, column + 2] == currentMarker)
-                        {
-                            markersCount = 3;
-                        }
-                        else if (row - 1 >= 0 && column - 1 >= 0 && field[row - 1, column - 1] == currentMarker)
-                        {
-                            markersCount = 3;
-                        }
-
-                    }
-
-                    if (row + 1 >= 5 && field[row + 1, column] == currentMarker)
-                    {
-                        markersCount = 2;
-
-                        if (row + 2 >= 5 && field[row + 2, column] == currentMarker)
-                        {
-                            markersCount = 3;
-                        }
-                        else if (row - 1 >= 0 && field[row - 1, column] == currentMarker)
-                        {
-                            markersCount = 3;
-                        }
-
-                    }
-
-                    if (row + 1 < 5 && column - 1 >= 0 && field[row + 1, column - 1] == currentMarker)
-                    {
-                        markersCount = 2;
-
-                        if (row + 2 < 5 && column - 2 >= 0 && field[row + 2, column - 2] == currentMarker)
-                        {
-                            markersCount = 3;
-                        }
-                        else if (row - 1 >= 0 && column + 1 >= 0 && field[row - 1, column + 1] == currentMarker)
-                        {
-                            markersCount = 3;
-                        }
-
-                    }
-
-
+                    
+                    mtd.TicTacToeCheck(string[] field));
 
                     markedCellsCount++;
                 }
@@ -560,68 +371,20 @@ namespace ProjectHomework
             }
         }
 
-
-
-
-
-        static void DiagonalElementsChange()
+        public void DiagonalElementsChange(int[,] matrix)
         {
-            Random rnd = new Random();
-
-            int[,] matrix = new int[10, 10];
-
-            Console.WriteLine("Исходный массив: ");
-
-            //Вывходим массив
-            for (int i = 0; i < matrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < matrix.GetLength(1); j++)
-                {
-                    matrix[i, j] = j;
-                    Console.Write($"{matrix[i, j]} ");
-                }
-                Console.WriteLine();
-            }
-
             for (int i = 0; i < matrix.GetLength(0); i++)
             {
                 int temp = matrix[i, i];
                 matrix[i, i] = matrix[i, matrix.GetLength(1) - i - 1];
                 matrix[i, matrix.GetLength(1) - i - 1] = temp;
             }
-
-            Console.WriteLine("Измененный массив: ");
-            //Вывходим массив
-            for (int i = 0; i < matrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < matrix.GetLength(1); j++)
-                {
-                    Console.Write($"{matrix[i, j]} ");
-                }
-                Console.WriteLine();
-            }
-
-
+            return matrix;
         }
 
-        static void GreaterNumberInCentralCell()
+        public void GreaterNumberInCentralCell(int[,] matrix)
         {
-            Random rnd = new Random();
-
-            int[,] matrix = new int[6, 6];
             int counter = 0;
-
-            // Создание рандомного массива
-            for (int i = 0; i < matrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < matrix.GetLength(1); j++)
-                {
-                    matrix[i, j] = rnd.Next(-20, 20);
-                    Console.Write("{0,3} ", matrix[i, j]);
-                }
-                Console.WriteLine();
-            }
-
 
             for (int i = 1; i < matrix.GetLength(0) - 1; i++)
             {
@@ -630,12 +393,26 @@ namespace ProjectHomework
                     if (matrix[i, j] > matrix[i - 1, j] && matrix[i, j] > matrix[i + 1, j] && matrix[i, j] > matrix[i, j - 1] && matrix[i, j] > matrix[i, j + 1])
                     {
                         counter++;
-                        Console.WriteLine(" Строка: " + i + " Столбец: " + j + " Число : " + matrix[i, j]);
                     }
                 }
             }
-            Console.WriteLine();
-            Console.WriteLine("Всего совпадний: " + counter);
+            
+            int[] greaterNumbers = new int[counter];
+            int counterGreaterNumbers = 0;
+            
+            for (int i = 1; i < matrix.GetLength(0) - 1; i++)
+            {
+                for (int j = 1; j < matrix.GetLength(1) - 1; j++)
+                {
+                    if (matrix[i, j] > matrix[i - 1, j] && matrix[i, j] > matrix[i + 1, j] && matrix[i, j] > matrix[i, j - 1] && matrix[i, j] > matrix[i, j + 1])
+                    {
+                        greaterNumbers[counterGreaterNumbers] = matrix[i,j];
+                        counterGreaterNumbers++;
+                    }
+                }
+            }
+            
+            return greaterNumbers;
         }
     }
 }
