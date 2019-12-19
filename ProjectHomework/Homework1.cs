@@ -6,6 +6,7 @@ namespace ProjectHomework
 {
      public class HomeWork1
         {
+
         public double[] CalcCreditPayments(int amount, int years, double percent)
         {
             double paymentPerMouth, totalAmount;
@@ -13,20 +14,19 @@ namespace ProjectHomework
             paymentPerMouth = (amount * percent * Math.Pow((1 + percent), years)) / (12 * (Math.Pow((1 + percent), years) - 1));
             totalAmount = paymentPerMouth * 12 * years;
 
-            double[] result = { paymentPerMouth, totalAmount };
+            double[] result = { Math.Round(paymentPerMouth,2), Math.Round(totalAmount,2) };
 
             return result;
         }
 
-        public double[] CalcHypotenuse(int a, int b)
+        public double CalcHypotenuse(int a, int b)
         {
 
             double c;
 
             c = Math.Sqrt(a * a + b * b);
-            double[] result = { a, b, c };
 
-            return result;
+            return Math.Round(c, 2);
 
 
         }
@@ -60,14 +60,14 @@ namespace ProjectHomework
             {
                 x1 = (-b + Math.Sqrt(d)) / (2 * a);
                 x2 = (-b - Math.Sqrt(d)) / (2 * a);
-                result[0] = x1;
-                result[1] = x2;
+                result[0] = Math.Round(x1,2);
+                result[1] = Math.Round(x2, 2);
             }
 
             else if (d == 0)
             {
                 x1 = -b / (2 * a);
-                result[0] = x1;
+                result[0] = Math.Round(x1, 2);
             }
 
             return result;
@@ -174,7 +174,7 @@ namespace ProjectHomework
 
             for (int i = min; i <= max; i += step)
             {
-                arrOfEquationSolutions[count] = -0.23 * i * i + i;
+                arrOfEquationSolutions[count] = Math.Round(-0.23 * i * i + i,2);
                 count++;
             }
 

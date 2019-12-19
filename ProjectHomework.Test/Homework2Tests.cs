@@ -6,25 +6,25 @@ namespace ProjectHomework
     public class Homework2Tests
     {
 
-        [Test]
-        public void NumberReverse_number345_result543()
+        [TestCase(345,543)]
+        [TestCase(9534, 4359)]
+        [TestCase(945684, 486549)]
+
+        public void NumberReverseTest(int number, int expected)
         {
             HomeWork2 hw2 = new HomeWork2();
-            int number = 345;
 
-            int expected = 543;
             int actual = hw2.NumberReverse(number);
             Assert.AreEqual(expected, actual);
         }
 
-        [Test]
-        public void Calculator_number169number284operation153_result153()
+        [TestCase(66,24,"+", 90)]
+        [TestCase(12, 14, "*", 168)]
+        [TestCase(96, 30, "/", 3.2)]
+        public void CalculatorTest(int number1, int number2, string operation, double expected)
         {
             HomeWork2 hw2 = new HomeWork2();
-            int number1 = 69, number2 = 84;
-            string operation = "+";
 
-            double expected = 153;
             double actual = hw2.Calculator(number1, number2, operation);
             Assert.AreEqual(expected, actual);
         }

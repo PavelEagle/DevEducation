@@ -20,3 +20,14 @@ C:\Users\Pavel\Documents\GitHub\DevEducation\ProjectHomework\obj\Debug\netcoreap
 C:\Users\Pavel\Documents\GitHub\DevEducation\ProjectHomework\obj\Debug\netcoreapp3.0\ProjectHomework.AssemblyInfo.cs
 C:\Users\Pavel\Documents\GitHub\DevEducation\ProjectHomework\obj\Debug\netcoreapp3.0\ProjectHomework.dll
 C:\Users\Pavel\Documents\GitHub\DevEducation\ProjectHomework\obj\Debug\netcoreapp3.0\ProjectHomework.pdb
+C:\Users\User\Documents\GitHub\DevEducation\ProjectHomework\bin\Debug\netcoreapp3.0\ProjectHomework.exe
+C:\Users\User\Documents\GitHub\DevEducation\ProjectHomework\bin\Debug\netcoreapp3.0\ProjectHomework.deps.json
+C:\Users\User\Documents\GitHub\DevEducation\ProjectHomework\bin\Debug\netcoreapp3.0\ProjectHomework.runtimeconfig.json
+C:\Users\User\Documents\GitHub\DevEducation\ProjectHomework\bin\Debug\netcoreapp3.0\ProjectHomework.runtimeconfig.dev.json
+C:\Users\User\Documents\GitHub\DevEducation\ProjectHomework\bin\Debug\netcoreapp3.0\ProjectHomework.dll
+C:\Users\User\Documents\GitHub\DevEducation\ProjectHomework\bin\Debug\netcoreapp3.0\ProjectHomework.pdb
+C:\Users\User\Documents\GitHub\DevEducation\ProjectHomework\obj\Debug\netcoreapp3.0\ProjectHomework.csprojAssemblyReference.cache
+C:\Users\User\Documents\GitHub\DevEducation\ProjectHomework\obj\Debug\netcoreapp3.0\ProjectHomework.AssemblyInfoInputs.cache
+C:\Users\User\Documents\GitHub\DevEducation\ProjectHomework\obj\Debug\netcoreapp3.0\ProjectHomework.AssemblyInfo.cs
+C:\Users\User\Documents\GitHub\DevEducation\ProjectHomework\obj\Debug\netcoreapp3.0\ProjectHomework.dll
+C:\Users\User\Documents\GitHub\DevEducation\ProjectHomework\obj\Debug\netcoreapp3.0\ProjectHomework.pdb

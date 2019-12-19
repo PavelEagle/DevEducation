@@ -31,7 +31,7 @@ namespace ProjectHomework
             if (operation == "+") return number1 + number2;
             else if (operation == "-") return number1 - number2;
             else if (operation == "*") return number1 * number2;
-            else return number1 / number2;
+            else return (double)number1 / number2;
         }
 
         public double PrecentOfPositiveNumbers(int countOfNumber)
