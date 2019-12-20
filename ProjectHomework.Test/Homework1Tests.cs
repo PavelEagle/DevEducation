@@ -112,7 +112,7 @@ namespace ProjectHomework
 
         [TestCase(16, 20, 1, new double[] { -42.88 ,- 49.47, - 56.52, - 64.03, - 72 })]
         [TestCase(34, 40, 1, new double[] { -231.88, - 246.75, - 262.08, - 277.87, - 294.12, - 310.83, - 328 })]
-        [TestCase(5, 12, 2, new double[] { -0.75, - 4.27, - 9.63, - 16.83, - 25.87, - 36.75 })]
+        [TestCase(5, 15, 2, new double[] { -0.75, - 4.27, - 9.63, - 16.83, - 25.87, - 36.75 })]
         public void SolutionsOfEquationTest(int min, int max , int step, double[] expected)
         {
             HomeWork1 hw1 = new HomeWork1();

@@ -34,9 +34,11 @@ namespace ProjectHomework
 
             //Console.WriteLine(hw1.CalcQuadraticQquation(1,8,-3)[1]);
 
-            Console.WriteLine(hw2.Calculator(96, 30, "/"));
+            //Console.WriteLine(hw2.Calculator(96, 30, "/"));
 
+            //Console.WriteLine(hw2.SumBetweenMinMax(new int[] { -14, 16, 3, 0, 21, 9 }));
 
+            Console.WriteLine(hw3.CountOfDividers(7, 77, 9));
 
         }
     }
