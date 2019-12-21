@@ -18,7 +18,7 @@ namespace ProjectHomework
             Assert.AreEqual(expected, actual);
         }
 
-        public static IEnumerable <TestCaseData> RectangleDrawingTestList()
+        public static IEnumerable<TestCaseData> RectangleDrawingTestList()
         {
             yield return new TestCaseData(5, 4, "O", "X",
                 new string[,] { { "O", "O", "O", "O", "O" }, { "O", "X", "X", "X", "O" },
@@ -55,14 +55,14 @@ namespace ProjectHomework
         public static IEnumerable<TestCaseData> DiagonalElementsChangeTestList()
         {
             yield return new TestCaseData(new int[,] { { 1, 2, 3, 4, 5 }, { 1, 2, 3, 4, 5 },
-                                   { 1, 2, 3, 4, 5 }, { 1, 2, 3, 4, 5 }, { 1, 2, 3, 4, 5 } }, 
+                                   { 1, 2, 3, 4, 5 }, { 1, 2, 3, 4, 5 }, { 1, 2, 3, 4, 5 } },
                         new int[,] { { 5, 2, 3, 4, 1 }, { 1, 4, 3, 2, 5 }, { 1, 2, 3, 4, 5 },
                                    { 1, 4, 3, 2, 5 }, { 5, 2, 3, 4, 1 } });
             yield return new TestCaseData(new int[,] { { 6, 7, 8, 9 }, { 6, 7, 8, 9 },
                                    { 6, 7, 8, 9 }, { 6, 7, 8, 9 } },
                         new int[,] { { 9, 7, 8, 6 }, { 6, 8, 7, 9 }, { 6, 8, 7, 9 },
                                    { 9, 7, 8, 6 } });
-            yield return new TestCaseData(new int[,] { { 1, 11, 111}, { 1, 11, 111 }, { 1, 11, 111 } },
+            yield return new TestCaseData(new int[,] { { 1, 11, 111 }, { 1, 11, 111 }, { 1, 11, 111 } },
                                         new int[,] { { 111, 11, 1 }, { 1, 11, 111 }, { 111, 11, 1 } });
         }
 
@@ -77,7 +77,7 @@ namespace ProjectHomework
 
         public static IEnumerable<TestCaseData> GreaterNumberInCentralCellTestList()
         {
-            yield return new TestCaseData(new int[,] { { 6, 2, 5, 3, 1 }, { 7, 8, 1, -4, 0 }, 
+            yield return new TestCaseData(new int[,] { { 6, 2, 5, 3, 1 }, { 7, 8, 1, -4, 0 },
                         { 1, -2, 9, 3, -2 }, { -4, 6, 5, -2, 1 }, { 1, 3, 2, -5, -8 } },
                         new int[] { 8, 9, 6 });
         }
@@ -94,8 +94,8 @@ namespace ProjectHomework
         public static IEnumerable<TestCaseData> TicTacToeCheckTestList()
         {
             yield return new TestCaseData(new string[,] {{"X","+", "+", "+", "+" },{ "+", "X", "O","O", "+" },
-                { "+", "+", "X", "+", "+" }, { "+", "+", "+", "+", "+" }, { "+", "+", "+", "+", "+" } }, 
-                0 , 0 , "X" , 3);
+                { "+", "+", "X", "+", "+" }, { "+", "+", "+", "+", "+" }, { "+", "+", "+", "+", "+" } },
+                0, 0, "X", 3);
             yield return new TestCaseData(new string[,] {{"X","X", "O", "X" },{ "+", "+","O", "+" },
                 { "+", "+", "O", "+"}, { "+", "+", "+", "+"} },
                  2, 2, "O", 3);
@@ -111,6 +111,24 @@ namespace ProjectHomework
 
             int actual = mtd.TicTacToeCheck(matrix, currentMarker, row, column);
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(1, "I")]
+        [TestCase(2, "II")]
+        [TestCase(3, "III")]
+        [TestCase(10, "X")]
+        [TestCase(20, "XX")]
+        [TestCase(15, "XV")]
+        [TestCase(33, "XXXIII")]
+        [TestCase(4, "IV")]
+        [TestCase(9, "IX")]
+        [TestCase(111, "CXI")]
+        [TestCase(3876, "MMMDCCCLXXVI")]
+        public void GetRomanNumberTest(int arabicNumber, string romanNumber)
+        {
+            HomeWork3 hw3 = new HomeWork3();
+            string actual = hw3.GetRomanNumber(arabicNumber);
+            Assert.AreEqual(romanNumber, actual);
         }
     }
 }

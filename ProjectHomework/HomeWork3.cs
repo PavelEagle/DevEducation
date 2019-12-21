@@ -149,7 +149,13 @@ namespace ProjectHomework
                         Console.WriteLine();
                     }
 
-                    mtd.TicTacToeCheck(field, currentMarker, row, column);
+                    int result = mtd.TicTacToeCheck(field, currentMarker, row, column);
+
+                    if (result == 3)
+                    {
+                        Console.WriteLine($"{markedCellsCount % 2 + 1} Игрок выйграл!");
+                        markedCellsCount = 25;
+                    }
 
                     markedCellsCount++;
                 }
@@ -222,7 +228,13 @@ namespace ProjectHomework
                         Console.WriteLine();
                     }
 
-                    mtd.TicTacToeCheck(field, currentMarker, row, column);
+                    int result = mtd.TicTacToeCheck(field, currentMarker, row, column);
+
+                    if (result==3)
+                    {
+                        Console.WriteLine($"{markedCellsCount%2+1} Игрок выйграл!");
+                        markedCellsCount = 25;
+                    }
 
                     markedCellsCount++;
                 }
@@ -260,7 +272,13 @@ namespace ProjectHomework
                         Console.WriteLine();
                     }
 
-                    mtd.TicTacToeCheck(field, currentMarker, row, column);
+                    int result = mtd.TicTacToeCheck(field, currentMarker, row, column);
+
+                    if (result == 3)
+                    {
+                        Console.WriteLine($"{markedCellsCount % 2 + 1} Игрок выйграл!");
+                        markedCellsCount = 25;
+                    }
 
                     markedCellsCount++;
                     System.Threading.Thread.Sleep(1000);
@@ -320,6 +338,25 @@ namespace ProjectHomework
             }
             
             return greaterNumbers;
+        }
+
+        public string[] romanAlphabet = new string[] { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
+        public int[] arabicAlternative = new int[] { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 }; 
+        public string GetRomanNumber(int number)
+        {
+            StringBuilder romanNumber = new StringBuilder();
+
+
+            for (int i = 0; i < romanAlphabet.Length; i++)
+            {
+                while (number >= arabicAlternative[i])
+                {
+                    romanNumber.Append(romanAlphabet[i]);
+                    number -= arabicAlternative[i];
+                }
+            }
+
+            return romanNumber.ToString();
         }
     }
 }
