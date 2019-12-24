@@ -42,20 +42,22 @@ namespace ProjectHomework
 
             //Console.WriteLine(hw3.TicTacToe(4));
 
-            Human ant = new Human("Ant");
-            ant.GetInfo();
-            Human vas = new Human(2);
-            vas.GetInfo();
-            Human andr = new Human("Andrej", 33);
-            andr.GetInfo();
+            //Human ant = new Human("Ant");
+            //ant.GetInfo();
+            //Human vas = new Human(2);
+            //vas.GetInfo();
+            //Human andr = new Human("Andrej", 33);
+            //andr.GetInfo();
 
-            Human kirill = new Human() { name = "Kir", age = 22 };
-            kirill.GetInfo();
+            //Human kirill = new Human() { name = "Kir", age = 22 };
+            //kirill.GetInfo();
+
+
 
         }
     }
 
-
+    
  
 
 
