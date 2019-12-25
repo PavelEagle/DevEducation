@@ -97,9 +97,17 @@ namespace ProjectHomework
 
 
         //Добавить массив
-        public void AddAll(int[] val)
+        public int[] AddAll(int[] vals)
         {
-
+            int [] newArray = arrayOneElementIncrease(array, 100);
+            int numberOfElement = 0;
+            for (int i = array.Length; i < array.Length + vals.Length; i++)
+            {
+                newArray[i] = vals[numberOfElement];
+                numberOfElement++;
+            }
+            array = newArray;
+            return array;
         }
 
 
@@ -169,8 +177,9 @@ namespace ProjectHomework
                 array[indexOfElement] = 0;
                 for (int i = indexOfElement + 1; i < realLength; i++)
                 {
-                    array[i] = array[i - 1];
+                    array[i-1] = array[i];
                 }
+                array[realLength - 1] = 0;
                 realLength--;
                 return array;
             }
@@ -216,11 +225,13 @@ namespace ProjectHomework
             else
             {
                 int countOfElements = 0;
-                for (int i = 0; i < array.Length; i++)
+                for (int i = 0; i < array.Length-1; i++)
                 {
                     if (array[i] == 0)
                     {
-                        array[i + 1] = array[i];
+                        int temp = array[i];
+                        array[i] = array[i+1];
+                        array[i + 1] = temp;
                         countOfElements++;
                     }
                 }

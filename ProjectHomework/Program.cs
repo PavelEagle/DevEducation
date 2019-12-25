@@ -11,7 +11,7 @@ namespace ProjectHomework
             HomeWork3 hw3 = new HomeWork3();
             ArrayList arrList = new ArrayList();
 
-            int[] newArr = arrList.Add(99,2);
+            int[] newArr = arrList.AddAll(new int[] { 6,7,8});
 
             arrList.PrintArr(newArr);
 

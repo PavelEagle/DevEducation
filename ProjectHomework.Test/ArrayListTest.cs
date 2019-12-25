@@ -10,7 +10,7 @@ namespace ProjectHomework
         {
         }
 
-        [TestCase(20 , new int[] { 1, 2, 3, 4, 5, 20, 0})]
+        [TestCase(20, new int[] { 1, 2, 3, 4, 5, 20, 0 })]
         public void AddTest(int val, int[] expected)
         {
             ArrayList arrList = new ArrayList();
@@ -28,12 +28,31 @@ namespace ProjectHomework
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(new int[] {6, 7, 8}, new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 0, 0 })]
+        public void AddAllTest(int[] vals, int[] expected)
+        {
+            ArrayList arrList = new ArrayList();
+
+            int[] actual = arrList.AddAll(vals);
+            Assert.AreEqual(expected, actual);
+        }
+
+
         [TestCase(77, 3, new int[] { 1, 2, 3, 77, 5 })]
         public void SetTest(int indx, int val, int[] expected)
         {
             ArrayList arrList = new ArrayList();
 
             int[] actual = arrList.Set(val, indx);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(3, 4)]
+        public void GetTest(int indx, int expected)
+        {
+            ArrayList arrList = new ArrayList();
+
+            int actual = arrList.Get(indx);
             Assert.AreEqual(expected, actual);
         }
 
@@ -95,12 +114,12 @@ namespace ProjectHomework
         }
 
 
-        [TestCase(2, new int[] { 1, 2, 4, 5, 0 })]
-        public void RemoveAllTest(int indx, int[] expected)
+        [TestCase(2, new int[] { 1, 3, 4, 5, 0 })]
+        public void RemoveAllTest(int val, int[] expected)
         {
             ArrayList arrList = new ArrayList();
 
-            int[] actual = arrList.RemoveAll(indx);
+            int[] actual = arrList.RemoveAll(val);
             Assert.AreEqual(expected, actual);
         }
 
