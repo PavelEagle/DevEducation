@@ -9,12 +9,21 @@ namespace ProjectHomework
             HomeWork1 hw1 = new HomeWork1();
             HomeWork2 hw2 = new HomeWork2();
             HomeWork3 hw3 = new HomeWork3();
-            ArrayList arrList = new ArrayList();
-
-            int[] newArr = arrList.AddAll(new int[] { 6,7,8});
-
+            ArrayList arrList = new ArrayList(new int[] { 1, 1, 1, 1, 1, 1, 1 });
+            arrList.Add(2);
+            int[] newArr = arrList.toArray();
             arrList.PrintArr(newArr);
-
+            //int[] newArr = arrList.RemoveVal(1);
+            //arrList.PrintArr(newArr);
+            //Console.WriteLine();
+            //newArr = arrList.RemoveVal(1);
+            //arrList.PrintArr(newArr);
+            //Console.WriteLine();
+            //newArr = arrList.RemoveVal(1);
+            //arrList.PrintArr(newArr);
+            //Console.WriteLine();
+            //newArr = arrList.RemoveVal(1);
+            //arrList.PrintArr(newArr);
 
 
             //Console.WriteLine($"{newArr[0]},{newArr[1]}, {newArr[2]}");

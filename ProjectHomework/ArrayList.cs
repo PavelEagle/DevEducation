@@ -6,13 +6,24 @@ namespace ProjectHomework
 {
     public class ArrayList
     {
-        // + 30%
-        private int[] array = { 1, 2, 3, 4, 5 };
-        private int realLength = 5;
 
-        private int[] arrayOneElementIncrease(int[] array, double percentIncrease)
+        private int[] array;
+        private int realLength;
+
+        public ArrayList()
         {
-            int[] newArray = new int [array.Length + (int)Math.Round(percentIncrease/100 * array.Length)];
+            array = new int[10];
+            realLength = 0;
+        }
+
+        public ArrayList(int[] array)
+        {
+            this.array = array;
+            realLength = array.Length;
+        }
+        private int[] arrayOneElementIncrease(int[] array)
+        {
+            int[] newArray = new int [array.Length*3/2 + 1];
 
             for (int i = 0; i < array.Length; i++)
             {
@@ -22,20 +33,50 @@ namespace ProjectHomework
             return newArray;
         }
 
+        private int[] arrayOneElementReduce(int[] array)
+        {
+            int[] newArray = new int[2*(array.Length-1)/3];
+
+            for (int i = 0; i < newArray.Length; i++)
+            {
+                newArray[i] = array[i];
+            }
+
+            return newArray;
+        }
+
+        private int[] arrayIncrease(int[] array, int valsLength)
+        {
+            int[] newArray = new int[array.Length + valsLength*3/2 + 1 ];
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                newArray[i] = array[i];
+            }
+
+            return newArray;
+        }
+
+        
 
         //Добавляет элемент
-        public int[] Add(int val)
+        public void Add(int val)
         {
-            array = arrayOneElementIncrease(array,30);
+            if (array.Length == realLength)
+            {
+                array = arrayOneElementIncrease(array);
+            }
             array[realLength] = val;
             realLength++;
-            return array;
         }
 
         // Добавляет элемент на определенную позицию
-        public int[] Add(int indx, int val)
+        public void Add(int indx, int val)
         {
-            array = arrayOneElementIncrease(array,30);
+            if (array.Length == realLength)
+            {
+                array = arrayOneElementIncrease(array);
+            }
 
             for (int i = realLength; i >= indx; i--)
             {
@@ -43,8 +84,6 @@ namespace ProjectHomework
             }
             array[indx] = val;
             realLength++;
-
-            return array;
         }
 
         // Заменяет элемент массива
@@ -98,24 +137,40 @@ namespace ProjectHomework
 
 
         //Добавить массив
-        public int[] AddAll(int[] vals)
+        public void AddAll(int[] vals)
         {
-            int [] newArray = arrayOneElementIncrease(array, 100);
+           // if (realLength + vals.Length >= array.Length)
+            int[] newArray = arrayIncrease(array, vals.Length);
             int numberOfElement = 0;
-            for (int i = array.Length; i < array.Length + vals.Length; i++)
+            for (int i = realLength; i < realLength + vals.Length; i++)
             {
                 newArray[i] = vals[numberOfElement];
                 numberOfElement++;
             }
             array = newArray;
-            return array;
+            realLength += vals.Length;
         }
 
 
         //Добавить массив с определенного индекса
-        public void AddAll(int indx, int[] vals)
+        public int[] AddAll(int indx, int[] vals)
         {
+            int[] newArray = arrayIncrease(array, vals.Length);
+            int numberOfElement = 0;
 
+            for (int i = indx; i < vals.Length + indx; i++)
+            {
+                newArray[i+indx+1] = newArray[i];
+            }
+
+            for (int i = indx; i < vals.Length + indx ; i++)
+            {
+                newArray[i] = vals[numberOfElement];
+                numberOfElement++;
+            }
+            array = newArray;
+            realLength += vals.Length;
+            return array;
         }
 
         //Возвращает индекс первого совпадения
@@ -159,6 +214,11 @@ namespace ProjectHomework
         //Удаляет элемент по значению
         public int[] RemoveVal(int val)
         {
+            if (array.Length - realLength == Math.Round(0.5 * array.Length)-1)
+            {
+                array = arrayOneElementReduce(array);
+            }
+
             int indexOfElement = -1;
             for (int i = 0; i < array.Length; i++)
             {
@@ -176,7 +236,7 @@ namespace ProjectHomework
             else
             {
                 array[indexOfElement] = 0;
-                for (int i = indexOfElement + 1; i < realLength; i++)
+                for (int i = indexOfElement + 1; i < realLength-1; i++)
                 {
                     array[i-1] = array[i];
                 }
@@ -247,6 +307,16 @@ namespace ProjectHomework
             {
                 Console.Write($"{array[i]} ");
             }
+        }
+
+        public int[] toArray()
+        {
+            int[] newArray = new int[realLength];
+            for (int i = 0; i < newArray.Length; i++)
+            {
+                newArray[i] = array[i];
+            }
+            return newArray;
         }
 
     }

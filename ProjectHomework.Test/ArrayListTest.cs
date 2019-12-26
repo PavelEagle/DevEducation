@@ -10,30 +10,42 @@ namespace ProjectHomework
         {
         }
 
-        [TestCase(20, new int[] { 1, 2, 3, 4, 5, 20, 0 })]
+        [TestCase(20, new int[] { 1, 2, 3, 4, 5, 20 })]
         public void AddTest(int val, int[] expected)
         {
-            ArrayList arrList = new ArrayList();
+            ArrayList arrList = new ArrayList(new int[] { 1, 2, 3, 4, 5 });
+            arrList.Add(20);
 
-            int[] actual = arrList.Add(val);
+            int[] actual = arrList.toArray();
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(99, 2, new int[] { 1, 2, 99, 3, 4, 5, 0 })]
+        [TestCase(2, 99, new int[] { 1, 2, 99, 3, 4, 5 })]
         public void AddTest(int indx, int val, int[] expected)
         {
-            ArrayList arrList = new ArrayList();
+            ArrayList arrList = new ArrayList(new int[] { 1, 2, 3, 4, 5 });
+            arrList.Add(2, 99);
 
-            int[] actual = arrList.Add(val, indx);
+            int[] actual = arrList.toArray();
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(new int[] {6, 7, 8}, new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 0, 0 })]
-        public void AddAllTest(int[] vals, int[] expected)
+        [TestCase(new int[] {1, 2, 3, 4, 5 }, new int[] {6, 7, 8}, new int[] { 1, 2, 3, 4, 5, 6, 7, 8 })]
+        public void AddAllTest(int[] array, int[] vals, int[] expected)
         {
-            ArrayList arrList = new ArrayList();
+            ArrayList arrList = new ArrayList(array);
+            arrList.AddAll(vals);
 
-            int[] actual = arrList.AddAll(vals);
+            int[] actual = arrList.toArray();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, 2, new int[] { 6, 7, 8 }, new int[] { 1, 2, 6, 7, 8, 3, 4, 5})]
+        public void AddAllTest(int [] array, int indx, int[] vals, int[] expected)
+        {
+            ArrayList arrList = new ArrayList(array);
+            arrList.AddAll(indx,vals);
+            int[] actual = arrList.toArray();
             Assert.AreEqual(expected, actual);
         }
 
@@ -42,8 +54,8 @@ namespace ProjectHomework
         public void SetTest(int indx, int val, int[] expected)
         {
             ArrayList arrList = new ArrayList();
-
-            int[] actual = arrList.Set(val, indx);
+            arrList.Set(val, indx);
+            int[] actual = arrList.toArray();
             Assert.AreEqual(expected, actual);
         }
 
