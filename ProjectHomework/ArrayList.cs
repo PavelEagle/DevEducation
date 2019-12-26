@@ -27,7 +27,7 @@ namespace ProjectHomework
 
         }
 
-        //Возвращает индекс первого совпадения
+        //Везвращает эелемент по индексу
         public void Get(int val)
         {
 
