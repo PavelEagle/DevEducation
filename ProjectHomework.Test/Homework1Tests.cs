@@ -15,6 +15,12 @@ namespace ProjectHomework
         [TestCase(5000, 5, 0.15, new double[] { 124.3, 7457.89 })]
         public void CalcCreditPaymentsTest(int amount, int years, double percent, double[] expected)
         {
+
+
+
+
+
+
             HomeWork1 hw1 = new HomeWork1();
 
            double[] actual = hw1.CalcCreditPayments(amount, years, percent);

@@ -9,7 +9,15 @@ namespace ProjectHomework
             HomeWork1 hw1 = new HomeWork1();
             HomeWork2 hw2 = new HomeWork2();
             HomeWork3 hw3 = new HomeWork3();
+            ArrayList arrList = new ArrayList();
 
+            int[] newArr = arrList.AddAll(new int[] { 6,7,8});
+
+            arrList.PrintArr(newArr);
+
+
+
+            //Console.WriteLine($"{newArr[0]},{newArr[1]}, {newArr[2]}");
 
             int[] arrOfNumbers = { 11, 23, 54, 68, 93, 35, 79, 55 };
 
