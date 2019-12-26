@@ -50,11 +50,11 @@ namespace ProjectHomework
         }
 
 
-        [TestCase(77, 3, new int[] { 1, 2, 3, 77, 5 })]
-        public void SetTest(int indx, int val, int[] expected)
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, 3, 77, new int[] { 1, 2, 3, 77, 5 })]
+        public void SetTest(int[] array, int indx, int val, int[] expected)
         {
-            ArrayList arrList = new ArrayList();
-            arrList.Set(val, indx);
+            ArrayList arrList = new ArrayList(array);
+            arrList.Set(indx, val);
             int[] actual = arrList.toArray();
             Assert.AreEqual(expected, actual);
         }

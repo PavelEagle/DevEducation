@@ -87,12 +87,11 @@ namespace ProjectHomework
         }
 
         // Заменяет элемент массива
-        public int[] Set(int indx, int val)
+        public void Set(int indx, int val)
         {
             if (indx < realLength - 1)
             {
                 array[indx] = val;
-                return array;
             }
             else
             {
