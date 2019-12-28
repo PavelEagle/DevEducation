@@ -9,26 +9,28 @@ namespace ProjectHomework
             HomeWork1 hw1 = new HomeWork1();
             HomeWork2 hw2 = new HomeWork2();
             HomeWork3 hw3 = new HomeWork3();
-            ArrayList arrList = new ArrayList(new int[] { 1, 1, 1, 1, 1, 1, 1 });
-            arrList.Add(2);
-            int[] newArr = arrList.toArray();
-            arrList.PrintArr(newArr);
-            //int[] newArr = arrList.RemoveVal(1);
-            //arrList.PrintArr(newArr);
-            //Console.WriteLine();
-            //newArr = arrList.RemoveVal(1);
-            //arrList.PrintArr(newArr);
-            //Console.WriteLine();
-            //newArr = arrList.RemoveVal(1);
-            //arrList.PrintArr(newArr);
-            //Console.WriteLine();
-            //newArr = arrList.RemoveVal(1);
-            //arrList.PrintArr(newArr);
+            ArrayList arrList = new ArrayList(new int[] { 1, 2, 3, 4, 5 });
+
+            arrList.RemoveAll(2);
+            int [] restul = arrList.ToArray();
+            arrList.PrintArr(restul);
+        }
+        //int[] newArr = arrList.RemoveVal(1);
+        //arrList.PrintArr(newArr);
+        //Console.WriteLine();
+        //newArr = arrList.RemoveVal(1);
+        //arrList.PrintArr(newArr);
+        //Console.WriteLine();
+        //newArr = arrList.RemoveVal(1);
+        //arrList.PrintArr(newArr);
+        //Console.WriteLine();
+        //newArr = arrList.RemoveVal(1);
+        //arrList.PrintArr(newArr);
 
 
-            //Console.WriteLine($"{newArr[0]},{newArr[1]}, {newArr[2]}");
+        //Console.WriteLine($"{newArr[0]},{newArr[1]}, {newArr[2]}");
 
-            int[] arrOfNumbers = { 11, 23, 54, 68, 93, 35, 79, 55 };
+        int[] arrOfNumbers = { 11, 23, 54, 68, 93, 35, 79, 55 };
 
             //Console.WriteLine(hw1.CalcHypotenuse(54,76));
 
@@ -107,4 +109,4 @@ namespace ProjectHomework
     //            Console.WriteLine("'*' - умножение: ");
     //            Console.WriteLine("'/' - деление: ");
     //            Console.WriteLine("'0' - выход: ");
-}
+

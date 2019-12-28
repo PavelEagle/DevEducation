@@ -235,9 +235,9 @@ namespace ProjectHomework
             else
             {
                 array[indexOfElement] = 0;
-                for (int i = indexOfElement + 1; i < realLength-1; i++)
+                for (int i = indexOfElement; i < realLength-1; i++)
                 {
-                    array[i-1] = array[i];
+                    array[i] = array[i+1];
                 }
                 array[realLength - 1] = 0;
                 realLength--;
@@ -246,7 +246,7 @@ namespace ProjectHomework
         }
 
         //Удаляет элемент по индексу
-        public int[] RemoveIndx(int indx)
+        public void RemoveIndx(int indx)
         {
             if (indx > array.Length)
             {
@@ -261,13 +261,30 @@ namespace ProjectHomework
                 }
                 array[realLength-1] = 0;
                 realLength--;
-                return array;
             }
         }
 
         //Удаляет все индексы с определенным значением
-        public int[] RemoveAll(int val)
+        public void RemoveAll(int val)
         {
+
+            int counter = 0;
+            int[] temp = new int[array.Length];
+            for (int i = 0; i<realLength; i++) {
+                if (array[i - counter] != val)
+                {
+                    temp[i-counter] = array[i];
+                }
+                    
+                else 
+                { 
+                    counter++; 
+                }
+                array = temp;
+                realLength -= counter;
+
+            }
+
             int indexOfElement = -1;
             for (int i = 0; i < array.Length; i++)
             {
@@ -296,7 +313,6 @@ namespace ProjectHomework
                     }
                 }
                 realLength-= countOfElements;
-                return array;
             }
         }
 
@@ -308,7 +324,7 @@ namespace ProjectHomework
             }
         }
 
-        public int[] toArray()
+        public int[] ToArray()
         {
             int[] newArray = new int[realLength];
             for (int i = 0; i < newArray.Length; i++)
