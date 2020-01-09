@@ -7,14 +7,61 @@ namespace ProjectHomework
     class LinkedList
     {
 
-        LinkedList<int> linkedList = new LinkedList<int>();
+        Node head;
+
+        public class Node
+        {
+            public int value;
+            public Node next;
+
+            public Node(int d)
+            {
+                value = d;
+                next = null;
+            }
+        }
+
+
 
 
         //Добавляет элемент
-        public void Add(int val)
+        public void Add(Node node)
         {
-            linkedList.AddLast(val);
+            if (head == null)
+                head = node;
+            else
+            {
+                Node temp = head;
+                while (temp.next != null)
+                {
+                    temp = temp.next;
+                }
+                temp.next = node;
+            }
         }
+
+
+        public void Reverse()
+        {
+
+            Node tmp = head, lostLink = null;
+            while (tmp.next != null)
+            {
+                lostLink = tmp.next; 
+                tmp.next = tmp.next.next; 
+                lostLink.next = head; 
+                head = lostLink; 
+                
+            }
+        }
+
+
+
+
+
+
+
+
 
         // Добавляет элемент на определенную позицию
         public void Add(int indx, int val)
@@ -22,10 +69,10 @@ namespace ProjectHomework
         }
 
         // Заменяет элемент массива
-        public void Set(int indx, int val)
-        {
-            linkedList.Find(77);
-        }
+        //public void Set(int indx, int val)
+        //{
+        //    linkedList.Find(77);
+        //}
 
         
 
@@ -64,13 +111,13 @@ namespace ProjectHomework
         }
 
         //Возвращает индекс первого совпадения
-        public LinkedListNode<int> IndexOf(int val)
-        {
-            LinkedListNode<int> nodes = null;           
-            var matchNode = linkedList.Nodes().FirstOrDefault(n => n.Value.Id == myId);
+        //public LinkedListNode<int> IndexOf(int val)
+        //{
+        //    //LinkedListNode<int> nodes = null;           
+        //    //var matchNode = linkedList.Nodes().FirstOrDefault(n => n.Value.Id == myId);
 
-            return nodes;
-        }
+        //    //return nodes;
+        //}
 
         //Возвращает индексы совпадающих элементов
         public void Search(int val)
@@ -98,8 +145,13 @@ namespace ProjectHomework
 
         public void PrintList()
         {
-            for (var node = linkedList.First; node != null; node = node.Next)
-                Console.Write(node.Value + "\t");
+            Node tmp = head;
+            while (tmp != null)
+            {
+                Console.Write(tmp.value + " ");
+                tmp = tmp.next;
+            }
+            Console.WriteLine();
         }
 
         public void ToArray()

@@ -6,17 +6,26 @@ namespace ProjectHomework
     {
         static void Main(string[] args)
         {
-            HomeWork1 hw1 = new HomeWork1();
-            HomeWork2 hw2 = new HomeWork2();
-            HomeWork3 hw3 = new HomeWork3();
-            ArrayList arrList = new ArrayList(new int[] { 1, 2, 3, 4, 5 });
-            LinkedList llist = new LinkedList();
+            //HomeWork1 hw1 = new HomeWork1();
+            //HomeWork2 hw2 = new HomeWork2();
+            //HomeWork3 hw3 = new HomeWork3();
 
-            llist.Add(5);
-            llist.Add(66);
-            llist.Add(77);
-            llist.PrintList();
-            Console.WriteLine(llist.IndexOf(5));
+            //LinkedList llist = new LinkedList();
+
+            //llist.Add(new LinkedList.Node(3));
+            //llist.Add(new LinkedList.Node(0));
+            //llist.Add(new LinkedList.Node(-1));
+            //llist.Add(new LinkedList.Node(4));
+            //llist.PrintList();
+            //llist.Reverse();
+            //llist.PrintList();
+            double[,] arr = { { 2, 1, 9, -5, 3 }, { 3, 2, 4, 0, 16 }, { 3, 3, 0, 0, 9 }, {5, 0, 0, 0, 10 } };
+
+            Gauss gs = new Gauss(arr);
+
+            gs.PrintArr();
+            gs.Test();
+
         }
         //int[] newArr = arrList.RemoveVal(1);
         //arrList.PrintArr(newArr);
