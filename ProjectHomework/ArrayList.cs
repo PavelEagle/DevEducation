@@ -306,9 +306,9 @@ namespace ProjectHomework
                 {
                     if (array[i] == 0)
                     {
-                        int temp = array[i];
+                        int tempSwap = array[i];
                         array[i] = array[i+1];
-                        array[i + 1] = temp;
+                        array[i + 1] = tempSwap;
                         countOfElements++;
                     }
                 }

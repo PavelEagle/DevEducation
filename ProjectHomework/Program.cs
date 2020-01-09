@@ -10,10 +10,13 @@ namespace ProjectHomework
             HomeWork2 hw2 = new HomeWork2();
             HomeWork3 hw3 = new HomeWork3();
             ArrayList arrList = new ArrayList(new int[] { 1, 2, 3, 4, 5 });
+            LinkedList llist = new LinkedList();
 
-            arrList.RemoveAll(2);
-            int [] restul = arrList.ToArray();
-            arrList.PrintArr(restul);
+            llist.Add(5);
+            llist.Add(66);
+            llist.Add(77);
+            llist.PrintList();
+            Console.WriteLine(llist.IndexOf(5));
         }
         //int[] newArr = arrList.RemoveVal(1);
         //arrList.PrintArr(newArr);
