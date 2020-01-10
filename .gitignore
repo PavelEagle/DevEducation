@@ -2,3 +2,6 @@
 *.cache
 *.dll
 *.pdb
+*.dll
+*.pdb
+*.cache

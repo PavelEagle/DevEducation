@@ -21,9 +21,6 @@ namespace ProjectHomework
             }
         }
 
-
-
-
         //Добавляет элемент
         public void Add(Node node)
         {
@@ -40,7 +37,7 @@ namespace ProjectHomework
             }
         }
 
-
+        //Реверс листа
         public void Reverse()
         {
 
@@ -54,95 +51,215 @@ namespace ProjectHomework
                 
             }
         }
-
-
-
-
-
-
-
-
+        
+        // Размер листа
+        public int ListSize()
+        {
+            int count = 0;
+            Node tmp = head;
+            while (tmp != null)
+            {
+                tmp = tmp.next;
+                count++;
+            }
+            return count;
+        }
 
         // Добавляет элемент на определенную позицию
-        public void Add(int indx, int val)
+        public void AddAtIndex(Node node, int index)
         {
+            {
+                if (index > ListSize()-1)
+                {
+                    Add(node);
+                }
+                else
+                {
+                    if (head == null)
+                        head = node;
+
+                    else
+                    {
+                        Node temp = head;
+                        int count = 0;
+                        while (count < index - 1)
+                        {
+                            temp = temp.next;
+                            count++;
+                        }
+                        Node lostLink = temp.next;
+                        temp.next = node;
+                        node.next = lostLink;
+                    }
+                }
+            }
         }
 
-        // Заменяет элемент массива
-        //public void Set(int indx, int val)
-        //{
-        //    linkedList.Find(77);
-        //}
-
-        
-
-
-        //Возвращает элемент по индексу
-        public void Get(int indx)
+        // Меняет значение ноды на определенной позиции
+        public void ChangeElementAtIndex(Node node, int index)
         {
+            {
+                if (index > ListSize() - 1)
+                {
+                    ChangeElementAtIndex(node, ListSize() - 1);
+                }
+                else
+                {
+                    if (head == null)
+                        head = node;
+
+                    else
+                    {
+                        Node temp = head;
+                        int count = 0;
+                        while (count < index)
+                        {
+                            temp = temp.next;
+                            count++;
+                        }
+                        temp.value = node.value;
+                    }
+                }
+            }
         }
 
-
-        //Возвращает размер массива
-        public int Size(int[] array)
+        // Получить значение по индексу
+        public int Get(int indx)
         {
-            return array.Length;
+            Node temp = head;
+            int count = 0;
+            while (count < indx)
+            {
+                temp = temp.next;
+                count++;
+            }
+            return temp.value;
         }
 
-
-        //Содержит ли массив эелмент
-        public void Contains(int val)
+        // Содержит ли лист значение
+        public bool Contains(int val)
         {
-
+            Node temp = head;
+            while (temp.next != null)
+            {
+                if (temp.value == val)
+                {
+                    return true;
+                }
+                temp = temp.next;
+            }
+            return false;
         }
 
-
-        //Добавить массив
+        // Добавить массив в лист в конец
         public void AddAll(int[] vals)
         {
-
+            for (int i = 0; i < vals.Length; i++)
+            {
+                Add(new LinkedList.Node(vals[i]));
+            }
         }
 
-
-        //Добавить массив с определенного индекса
-        public void AddAll(int indx, int[] vals)
+        // Добавить массив в лист по индексу
+        public void AddAllAtIndex(int indx, int[] vals)
         {
-
+            for (int i = 0; i < vals.Length; i++)
+            {
+                AddAtIndex(new LinkedList.Node(vals[i]),indx);
+                indx++;
+            }
         }
 
         //Возвращает индекс первого совпадения
-        //public LinkedListNode<int> IndexOf(int val)
-        //{
-        //    //LinkedListNode<int> nodes = null;           
-        //    //var matchNode = linkedList.Nodes().FirstOrDefault(n => n.Value.Id == myId);
-
-        //    //return nodes;
-        //}
-
-        //Возвращает индексы совпадающих элементов
-        public void Search(int val)
+        public int IndexOf(int val)
         {
-           
+            Node temp = head;
+            int count = 0;
+            while (temp.value != val)
+            {
+                temp = temp.next;
+                count++;
+            }
+            return count;
         }
 
-        //Удаляет элемент по значению
+        //Возвращает индексы совпадающих элементов
+        public int[] Search(int val)
+        {
+            Node temp = head;
+            int count = 0;
+            while (temp.next != null)
+            {
+                if (temp.value == val)
+                {
+                    count++;
+                }
+                temp = temp.next;
+            }
+            int[] result = new int[count];
+            count = 0;
+            while (temp.next != null)
+            {
+                if (temp.value == val)
+                {
+                    result[count] = temp.value;
+                    count++;
+                }
+                temp = temp.next;
+            }
+            return result;
+        }
+
+        //Удаляет элемент со значением val
         public void RemoveVal(int val)
         {
-   
+            Node temp = head;
+            while (temp.next.next != null)
+            {
+                if (temp.next.value == val)
+                {
+                    temp.next = temp.next.next;
+                    break;
+                }
+                temp=temp.next;
+            }
+
         }
 
         //Удаляет элемент по индексу
         public void RemoveIndx(int indx)
         {
-    
+            Node temp = head;
+            int count = 0;
+            while (count < indx)
+            {
+                if (count == indx -1)
+                {
+                    temp.next = temp.next.next;
+                }
+                temp = temp.next;
+                count++;
+            }
         }
 
-        //Удаляет все индексы с определенным значением
+        // Удаляет все элементы с начением val
         public void RemoveAll(int val)
         {
-
+            Node temp = head;
+            while (temp.next.next != null)
+            {
+                if (temp.next.value == val)
+                {
+                    temp.next = temp.next.next;
+                    continue;
+                }
+                temp = temp.next;
+            }
+            temp.next = null;
         }
 
+
+        // Вывести лист
         public void PrintList()
         {
             Node tmp = head;
@@ -154,9 +271,5 @@ namespace ProjectHomework
             Console.WriteLine();
         }
 
-        public void ToArray()
-        {
-
-        }
     }
 }
