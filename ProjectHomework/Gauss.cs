@@ -82,6 +82,8 @@ namespace ProjectHomework
         public void SolutionOfGaussEquation()
         {
             ChangingDiagonalOfOne();
+            Console.WriteLine();
+            PrintArr();     
             CalculateX();
             Console.WriteLine();
             PrintArr();

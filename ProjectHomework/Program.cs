@@ -10,27 +10,27 @@ namespace ProjectHomework
             //HomeWork2 hw2 = new HomeWork2();
             //HomeWork3 hw3 = new HomeWork3();
 
-            LinkedList llist = new LinkedList();
+            //LinkedList llist = new LinkedList();
 
-            llist.Add(new LinkedList.Node(3));
-            llist.Add(new LinkedList.Node(0));
-            llist.Add(new LinkedList.Node(-1));
-            llist.Add(new LinkedList.Node(4));
-            llist.AddAllAtIndex(2,new int[] { 1,4 , 4, 4, 3, 4 });
-            llist.PrintList();
-            llist.RemoveAll(4);
-            llist.PrintList();
-            
-            
+            //llist.Add(new LinkedList.Node(3));
+            //llist.Add(new LinkedList.Node(0));
+            //llist.Add(new LinkedList.Node(-1));
+            //llist.Add(new LinkedList.Node(4));
+            //llist.AddAllAtIndex(2,new int[] { 1,4 , 4, 4, 3, 4 });
+            //llist.PrintList();
+            //llist.RemoveAll(4);
+            //llist.PrintList();
+
+
             //llist.Reverse();
             //llist.PrintList();
-            //double[,] arr = { { 2, 1, 9, -5, 3 }, { 3, 2, 4, 0, 16 }, { 3, 3, 0, 0, 9 }, {5, 0, 0, 0, 10 } };
+            double[,] arr = { { 5, 4, -2, 1, 11 }, { 2, -1, 4, 0, 12 }, { 3, 2, 0, 0, 7 }, { 4, 0, 0, 0, 4 } };
 
-            //Gauss gs = new Gauss();
+            Gauss gs = new Gauss(arr);
 
-            //gs.PrintArr();
-            //gs.SolutionOfGaussEquation();
-            //gs.printResult();
+            gs.PrintArr();
+            gs.SolutionOfGaussEquation();
+            gs.printResult();
 
         }
         //int[] newArr = arrList.RemoveVal(1);
