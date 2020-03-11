@@ -16,10 +16,12 @@ namespace AVLTree
             Oak.Add(15);
             Oak.Add(11);
 
+            Oak.Remove(12);
             foreach (var item in Oak)
             {
                 Console.WriteLine(item);
             }
+
         }
 
 

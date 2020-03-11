@@ -26,6 +26,8 @@ namespace AVLTree
             }
             internal set
             {
+                _left = value;
+
                 if (_left != null)
                 {
                     _left.Parent = this;
@@ -41,6 +43,8 @@ namespace AVLTree
             }
             internal set
             {
+                _right = value;
+
                 if (_right != null)
                 {
                     _right.Parent = this;
