@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectHomework", "ProjectHomework\ProjectHomework.csproj", "{44069768-E42B-4689-A918-0847EEA6F716}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectHomework.Tests", "ProjectHomework.Test\ProjectHomework.Tests.csproj", "{513370D4-2547-4317-A1D5-21ED33D41C0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectHomework.Tests", "ProjectHomework.Test\ProjectHomework.Tests.csproj", "{513370D4-2547-4317-A1D5-21ED33D41C0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cinema", "Cinema\Cinema.csproj", "{C48049F4-A1B4-4B66-97CC-5A8413BA88ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{513370D4-2547-4317-A1D5-21ED33D41C0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{513370D4-2547-4317-A1D5-21ED33D41C0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{513370D4-2547-4317-A1D5-21ED33D41C0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C48049F4-A1B4-4B66-97CC-5A8413BA88ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C48049F4-A1B4-4B66-97CC-5A8413BA88ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C48049F4-A1B4-4B66-97CC-5A8413BA88ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C48049F4-A1B4-4B66-97CC-5A8413BA88ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -97,10 +97,10 @@ namespace ProjectHomework
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(2, new int[] { 1 })]
-        public void SearchTest(int val, int[] expected)
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, 2, new int[] { 1 })]
+        public void SearchTest(int[]array, int val, int[] expected)
         {
-            ArrayList arrList = new ArrayList();
+            ArrayList arrList = new ArrayList(array);
 
             int[] actual = arrList.Search(val);
             Assert.AreEqual(expected, actual);
@@ -128,10 +128,10 @@ namespace ProjectHomework
         }
 
 
-        [TestCase(new int[] { 1, 2, 3, 4, 5 }, 2, new int[] { 1, 2, 4, 5 })]
+        [TestCase(new int[] { 5, 2, 3, 4, 5 }, 3, new int[] { 1, 2, 4, 5 })]
         public void RemoveAllTest(int[] array, int val, int[] expected)
         {
-            ArrayList arrList = new ArrayList(array);
+            ArrayList arrList = new ArrayList(new int[] { 1, 2, 3, 4, 5 });
             arrList.RemoveAll(val);
 
             int[] actual = arrList.ToArray();
