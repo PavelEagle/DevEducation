@@ -551,3 +551,7 @@ DevEdu/DevEdu/obj/DevEdu.csproj.nuget.dgspec.json
 DevEdu/DevEdu/obj/DevEdu.csproj.nuget.g.props
 
 DevEdu/DevEdu/bin/Debug/netcoreapp3.1/appsettings.Development.json
+
+*.dll
+
+*.cache

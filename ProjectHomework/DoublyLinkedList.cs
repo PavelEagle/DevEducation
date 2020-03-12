@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ProjectHomework
 {
-    class DoublyLinkedList
+    public class DoublyLinkedList
     {
         DoublyNode head;
         DoublyNode tail;

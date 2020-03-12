@@ -6,18 +6,20 @@ namespace AVLTree
     {
         static void Main(string[] args)
         {
-            AVLTree<int> Oak = new AVLTree<int>();
+            AVLTree<int> tree = new AVLTree<int>();
 
-            Oak.Add(10);
-            Oak.Add(3);
-            Oak.Add(2);
-            Oak.Add(4);
-            Oak.Add(12);
-            Oak.Add(15);
-            Oak.Add(11);
+            tree.Add(22);
+            tree.Add(1);
+            tree.Add(14);
+            tree.Add(23);
+            tree.Add(10);
+            tree.Add(15);
+            tree.Add(6);
 
-            Oak.Remove(12);
-            foreach (var item in Oak)
+            tree.Remove(6);
+
+
+            foreach (var item in tree)
             {
                 Console.WriteLine(item);
             }

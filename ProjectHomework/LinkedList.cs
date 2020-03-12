@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ProjectHomework
 {
-    class LinkedList
+    public class LinkedList
     {
 
         Node head;
@@ -19,6 +19,15 @@ namespace ProjectHomework
                 value = d;
                 next = null;
             }
+        }
+
+        public LinkedList()
+        {
+        }
+
+        public LinkedList(int[] arr)
+        {
+            AddAll(arr);
         }
 
         //Добавляет элемент
@@ -127,6 +136,12 @@ namespace ProjectHomework
         public int Get(int indx)
         {
             Node temp = head;
+            int size = ListSize();
+            if (indx > size - 1)
+            {
+                return -1;
+            }
+
             int count = 0;
             while (count < indx)
             {
@@ -140,6 +155,11 @@ namespace ProjectHomework
         public bool Contains(int val)
         {
             Node temp = head;
+            int size = ListSize();
+            if (size == 0)
+            {
+                return false;
+            }
             while (temp.next != null)
             {
                 if (temp.value == val)
@@ -175,12 +195,21 @@ namespace ProjectHomework
         {
             Node temp = head;
             int count = 0;
-            while (temp.value != val)
+            int size = ListSize();
+            bool isFound = false;
+
+            while (count < size)
             {
+                if (temp.value == val)
+                {
+                    isFound = true;
+                    return count;
+                }
                 temp = temp.next;
                 count++;
             }
-            return count;
+            if (isFound == true) return count;
+            else return -1;
         }
 
         //Возвращает индексы совпадающих элементов
@@ -198,13 +227,16 @@ namespace ProjectHomework
             }
             int[] result = new int[count];
             count = 0;
+            int arrIndex = 0;
+            temp = head;
             while (temp.next != null)
             {
                 if (temp.value == val)
                 {
-                    result[count] = temp.value;
-                    count++;
+                    result[arrIndex] = count;
+                    arrIndex++;
                 }
+                count++;
                 temp = temp.next;
             }
             return result;
@@ -214,16 +246,23 @@ namespace ProjectHomework
         public void RemoveVal(int val)
         {
             Node temp = head;
-            while (temp.next.next != null)
+            while (temp.next!= null)
             {
+
                 if (temp.next.value == val)
                 {
-                    temp.next = temp.next.next;
+                    if (temp.next.next == null)
+                    {
+                        temp.next = null;
+                    }
+                    else
+                    {
+                        temp.next = temp.next.next;
+                    }   
                     break;
                 }
                 temp=temp.next;
             }
-
         }
 
         //Удаляет элемент по индексу
@@ -245,8 +284,19 @@ namespace ProjectHomework
         // Удаляет все элементы с начением val
         public void RemoveAll(int val)
         {
+            int size = ListSize();
             Node temp = head;
-            while (temp.next.next != null)
+            if (size == 0) 
+            {
+                return;
+            }
+
+            if (temp.value == val)
+            {
+                head = temp.next;
+            }
+
+            while (temp.next != null)
             {
                 if (temp.next.value == val)
                 {
@@ -255,9 +305,24 @@ namespace ProjectHomework
                 }
                 temp = temp.next;
             }
-            temp.next = null;
+            //temp.next = null;
         }
 
+        public int[] ToArray()
+        {
+            int arraySize = ListSize();
+            int[] arr = new int[arraySize];
+            int count = 0;
+            Node tmp = head;
+
+            while (tmp != null)
+            {
+                arr[count] = tmp.value;
+                tmp = tmp.next;
+                count++;
+            }
+            return arr;
+        }
 
         // Вывести лист
         public void PrintList()

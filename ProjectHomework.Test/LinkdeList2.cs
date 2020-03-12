@@ -3,180 +3,199 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ProjectHomework.Tests
+namespace ProjectHomework
 {
     [TestFixture]
     class LinkdeList2Test
     {
-        [TestCase(0, new int[] { 14, 56, 43 }, ExpectedResult = new int[] { 0, 14, 56, 43 })]
-        [TestCase(56, new int[] { }, ExpectedResult = new int[] { 56 })]
-        public int[] AddFirstTest(int val, int[] arr)
+        [TestCase(14, new int[] { 32, 55, 21 }, new int[] { 14, 32, 55, 21 })]
+        [TestCase(69, new int[] { }, new int[] { 69 })]
+        public void AddFirstTest(int val, int[] arr, int[] expected)
         {
-            LinkedList dLL = new LinkedList(arr);
+            DoublyLinkedList dLL = new DoublyLinkedList(arr);
             dLL.AddFirst(val);
-            return dLL.ToArray();
+            int[] actual = dLL.ToArray();
+            Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(new int[] { 14, 56, 43 }, new int[] { 1, 2, 3 }, ExpectedResult = new int[] { 14, 56, 43, 1, 2, 3 })]
-        [TestCase(new int[] { 14, 56, 43 }, new int[] { }, ExpectedResult = new int[] { 14, 56, 43 })]
-        public int[] AddFirstArrTest(int[] val, int[] arr)
+        [TestCase(new int[] { 18, 10, 4 }, new int[] { 1, 2, 3 }, new int[] { 18, 10, 4, 1, 2, 3 })]
+        [TestCase(new int[] { 18, 10, 4 }, new int[] { }, new int[] { 18, 10, 4 })]
+        public void AddFirstArrTest(int[] val, int[] arr, int[] expected)
         {
-            MyDoublyLL dLL = new MyDoublyLL(arr);
+            DoublyLinkedList dLL = new DoublyLinkedList(arr);
             dLL.AddFirstArr(val);
-            return dLL.ToArray();
+            int[] actual = dLL.ToArray();
+            Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(5, new int[] { 14, 56, 43 }, ExpectedResult = new int[] { 14, 56, 43, 5 })]
-        [TestCase(71, new int[] { }, ExpectedResult = new int[] { 71 })]
-        public int[] AddLastTest(int val, int[] arr)
+        [TestCase(55, new int[] { 11, 22, 33, 44 }, new int[] { 11, 22, 33, 44, 55})]
+        [TestCase(69, new int[] { }, new int[] { 69 })]
+        public void AddLastTest(int val, int[] arr, int[] expected)
         {
-            MyDoublyLL dLL = new MyDoublyLL(arr);
+            DoublyLinkedList dLL = new DoublyLinkedList(arr);
             dLL.AddLast(val);
-            return dLL.ToArray();
+            int[] actual = dLL.ToArray();
+            Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(new int[] { 14, 56, 43 }, new int[] { 1, 2, 3 }, ExpectedResult = new int[] { 1, 2, 3, 14, 56, 43 })]
-        [TestCase(new int[] { }, new int[] { 1 }, ExpectedResult = new int[] { 1 })]
-        public int[] AddLastArrTest(int[] val, int[] arr)
+        [TestCase(new int[] { 18, 10, 4 }, new int[] { 3, 3, 3 }, new int[] { 3, 3, 3, 18, 10, 4 })]
+        [TestCase(new int[] { }, new int[] { 6 }, new int[] { 6 })]
+        public void AddLastArrTest(int[] val, int[] arr, int[] expected)
         {
-            MyDoublyLL dLL = new MyDoublyLL(arr);
+            DoublyLinkedList dLL = new DoublyLinkedList(arr);
             dLL.AddLastArr(val);
-            return dLL.ToArray();
+            int[] actual = dLL.ToArray();
+            Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(2, 5, new int[] { 14, 56, 43 }, ExpectedResult = new int[] { 14, 56, 43, 5 })]
-        [TestCase(0, 5, new int[] { 4, 6, 7, 5 }, ExpectedResult = new int[] { 4, 5, 6, 7, 5 })]
-        [TestCase(1, 5, new int[] { 1, 2, 3 }, ExpectedResult = new int[] { 1, 2, 5, 3 })]
-        public int[] AddAtTest(int idx, int val, int[] arr)
+        [TestCase(2, 3, new int[] { 9, 68, 44 }, new int[] { 9, 68, 44, 3 })]
+        [TestCase(0, 5, new int[] { 4, 6, 7, 5 }, new int[] { 4, 5, 6, 7, 5 })]
+        [TestCase(1, 5, new int[] { 3, 4, 5 }, new int[] { 3, 4, 5, 5 })]
+        public void AddAtTest(int idx, int val, int[] arr, int[] expected)
         {
-            MyDoublyLL dLL = new MyDoublyLL(arr);
+            DoublyLinkedList dLL = new DoublyLinkedList(arr);
             dLL.AddAt(idx, val);
-            return dLL.ToArray();
+            int[] actual = dLL.ToArray();
+            Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(2, new int[] { 4, 5 }, new int[] { 1, 2, 3, 6 }, ExpectedResult = new int[] { 1, 2, 3, 4, 5, 6 })]
-        [TestCase(0, new int[] { 4, 5 }, new int[] { 1, 2, 3, 6 }, ExpectedResult = new int[] { 1, 4, 5, 2, 3, 6 })]
-        [TestCase(3, new int[] { 4, 5 }, new int[] { 1, 2, 3, 6 }, ExpectedResult = new int[] { 1, 2, 3, 6, 4, 5 })]
-        [TestCase(10, new int[] { 4, 5 }, new int[] { 1, 2, 3, 6 }, ExpectedResult = new int[] { 1, 2, 3, 6 })]
-        public int[] AddAtArrTest(int idx, int[] val, int[] arr)
+        [TestCase(2, new int[] { 4, 5 }, new int[] { 1, 2, 3, 4 }, new int[] { 1, 2, 3, 4, 5, 4 })]
+        [TestCase(0, new int[] { 4, 5 }, new int[] { 1, 2, 3, 4 }, new int[] { 1, 4, 5, 2, 3, 4 })]
+        [TestCase(3, new int[] { 4, 5 }, new int[] { 1, 2, 3, 4 }, new int[] { 1, 2, 3, 4, 4, 5 })]
+        [TestCase(10, new int[] { 4, 5 }, new int[] { 1, 2, 3, 4 }, new int[] { 1, 2, 3, 4 })]
+        public void AddAtArrTest(int idx, int[] val, int[] arr, int[] expected)
         {
-            MyDoublyLL dLL = new MyDoublyLL(arr);
+            DoublyLinkedList dLL = new DoublyLinkedList(arr);
             dLL.AddAtArr(idx, val);
-            return dLL.ToArray();
+            int[] actual = dLL.ToArray();
+            Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(new int[] { 14, 22, 34 }, ExpectedResult = 3)]
-        [TestCase(new int[] { 54 }, ExpectedResult = 1)]
-        [TestCase(new int[] { }, ExpectedResult = 0)]
-        public int GetSizeTest(int[] arr)
+        [TestCase(new int[] { 11, 22, 33 }, 3)]
+        [TestCase(new int[] { 55 }, 1)]
+        [TestCase(new int[] { }, 0)]
+        public void GetSizeTest(int[] arr, int expected)
         {
-            MyDoublyLL dLL = new MyDoublyLL(arr);
-            return dLL.GetSize();
+            DoublyLinkedList dLL = new DoublyLinkedList(arr);
+            int actual = dLL.GetSize();
+            Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(new int[] { 1, 2, 3 }, ExpectedResult = 1)]
-        [TestCase(new int[] { 5 }, ExpectedResult = 5)]
-        [TestCase(new int[] { }, ExpectedResult = -1)]
-        public int GetFirstTest(int[] arr)
+        [TestCase(new int[] { 1, 2, 3 }, 1)]
+        [TestCase(new int[] { 69 }, 69)]
+        [TestCase(new int[] { }, -1)]
+        public void GetFirstTest(int[] arr, int expected)
         {
-            MyDoublyLL dLL = new MyDoublyLL(arr);
-            return dLL.GetFirst();
+            DoublyLinkedList dLL = new DoublyLinkedList(arr);
+            int actual = dLL.GetFirst();
+            Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(new int[] { 1, 2, 3 }, ExpectedResult = 3)]
-        [TestCase(new int[] { 55, 67, 959 }, ExpectedResult = 959)]
-        public int GetLastTest(int[] arr)
+        [TestCase(new int[] { 1, 2, 3 }, 3)]
+        [TestCase(new int[] { 55, 66, 77 }, 77)]
+        public void GetLastTest(int[] arr, int expected)
         {
-            MyDoublyLL dLL = new MyDoublyLL(arr);
-            return dLL.GetLast();
+            DoublyLinkedList dLL = new DoublyLinkedList(arr);
+            int actual = dLL.GetLast();
+            Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(2, new int[] { 1, 2, 3, 6 }, ExpectedResult = 3)]
-        [TestCase(1, new int[] { 1, 2, 3, 6 }, ExpectedResult = 2)]
-        [TestCase(10, new int[] { 1, 2, 3, 6 }, ExpectedResult = -1)]
-        public int GetTest(int idx, int[] arr)
+        [TestCase(2, new int[] { 1, 2, 3, 4 }, 3)]
+        [TestCase(1, new int[] { 1, 2, 3, 4 }, 2)]
+        [TestCase(7, new int[] { 1, 2, 3, 4 }, -1)]
+        public void GetTest(int idx, int[] arr, int expected)
         {
-            MyDoublyLL dLL = new MyDoublyLL(arr);
-            return dLL.Get(idx);
+            DoublyLinkedList dLL = new DoublyLinkedList(arr);
+            int actual = dLL.Get(idx);
+            Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(10, new int[] { 1, 2, 3 }, ExpectedResult = false)]
-        [TestCase(15, new int[] { 5, 15, 15, 3 }, ExpectedResult = true)]
-        [TestCase(1, new int[] { }, ExpectedResult = false)]
-        public bool ContainsTest(int val, int[] arr)
+        [TestCase(10, new int[] { 1, 2, 3 }, false)]
+        [TestCase(6, new int[] { 4, 5, 6, 6 }, true)]
+        [TestCase(1, new int[] { }, false)]
+        public void ContainsTest(int val, int[] arr, bool expected)
         {
-            MyDoublyLL dLL = new MyDoublyLL(arr);
-            return dLL.Contains(val);
+            DoublyLinkedList dLL = new DoublyLinkedList(arr);
+            bool actual = dLL.Contains(val);
+            Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(2, 5, new int[] { 1, 2, 3, 6 }, ExpectedResult = new int[] { 1, 2, 5, 6 })]
-        [TestCase(3, 5, new int[] { 1, 2, 3, 6 }, ExpectedResult = new int[] { 1, 2, 3, 5 })]
-        [TestCase(0, 5, new int[] { 1, 2, 3, 6 }, ExpectedResult = new int[] { 5, 2, 3, 6 })]
-        [TestCase(10, 5, new int[] { 1, 2, 3, 6 }, ExpectedResult = new int[] { 1, 2, 3, 6 })]
-        public int[] SetTest(int idx, int val, int[] arr)
+        [TestCase(2, 5, new int[] { 1, 2, 3, 4 }, new int[] { 1, 2, 5, 4 })]
+        [TestCase(3, 5, new int[] { 1, 2, 3, 4 }, new int[] { 1, 2, 3, 5 })]
+        [TestCase(0, 5, new int[] { 1, 2, 3, 4 }, new int[] { 5, 2, 3, 4 })]
+        [TestCase(10, 5, new int[] { 1, 2, 3, 4 }, new int[] { 1, 2, 3, 4 })]
+        public void SetTest(int idx, int val, int[] arr, int[] expected)
         {
-            MyDoublyLL dLL = new MyDoublyLL(arr);
+            DoublyLinkedList dLL = new DoublyLinkedList(arr);
             dLL.Set(idx, val);
-            return dLL.ToArray();
+            int[] actual = dLL.ToArray();
+            Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(new int[] { 1, 2, 3, 6 }, ExpectedResult = new int[] { 2, 3, 6 })]
-        [TestCase(new int[] { 1, 2, 3, 6, 7 }, ExpectedResult = new int[] { 2, 3, 6, 7 })]
-        public int[] RemoveFirstTest(int[] arr)
+        [TestCase(new int[] { 1, 2, 3, 4 }, new int[] { 2, 3, 4 })]
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, new int[] { 2, 3, 4, 5 })]
+        public void RemoveFirstTest(int[] arr, int[] expected)
         {
-            MyDoublyLL dLL = new MyDoublyLL(arr);
+            DoublyLinkedList dLL = new DoublyLinkedList(arr);
             dLL.RemoveFirst();
-            return dLL.ToArray();
+            int[] actual = dLL.ToArray();
+            Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(new int[] { 1, 2, 3 }, ExpectedResult = new int[] { 1, 2 })]
-        [TestCase(new int[] { }, ExpectedResult = new int[] { })]
-        public int[] RemoveLastTest(int[] arr)
+        [TestCase(new int[] { 1, 2, 3 }, new int[] { 1, 2 })]
+        [TestCase(new int[] { }, new int[] { })]
+        public void RemoveLastTest(int[] arr, int[] expected)
         {
-            MyDoublyLL dLL = new MyDoublyLL(arr);
+            DoublyLinkedList dLL = new DoublyLinkedList(arr);
             dLL.RemoveLast();
-            return dLL.ToArray();
+            int[] actual = dLL.ToArray();
+            Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(2, new int[] { 1, 2, 3, 6 }, ExpectedResult = new int[] { 1, 2, 6 })]
-        [TestCase(0, new int[] { 1, 2, 3, 6 }, ExpectedResult = new int[] { 2, 3, 6 })]
-        [TestCase(3, new int[] { 1, 2, 3, 6 }, ExpectedResult = new int[] { 1, 2, 3 })]
-        public int[] RemoveAtTest(int idx, int[] arr)
+        [TestCase(2, new int[] { 1, 2, 3, 4 }, new int[] { 1, 2, 4 })]
+        [TestCase(0, new int[] { 1, 2, 3, 4 }, new int[] { 2, 3, 4 })]
+        [TestCase(3, new int[] { 1, 2, 3, 4 }, new int[] { 1, 2, 3 })]
+        public void RemoveAtTest(int idx, int[] arr, int[] expected)
         {
-            MyDoublyLL dLL = new MyDoublyLL(arr);
+            DoublyLinkedList dLL = new DoublyLinkedList(arr);
             dLL.RemoveAt(idx);
-            return dLL.ToArray();
+            int[] actual = dLL.ToArray();
+            Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(6, new int[] { 1, 2, 3, 6 }, ExpectedResult = 3)]
-        [TestCase(3, new int[] { 1, 2, 3, 6 }, ExpectedResult = 2)]
-        [TestCase(2, new int[] { 1, 2, 3, 6 }, ExpectedResult = 1)]
-        [TestCase(1, new int[] { 1, 2, 3, 6 }, ExpectedResult = 0)]
-        [TestCase(10, new int[] { 1, 2, 3, 6 }, ExpectedResult = -1)]
-        public int IndexOfTest(int val, int[] arr)
+        [TestCase(4, new int[] { 1, 2, 3, 4 }, 3)]
+        [TestCase(3, new int[] { 1, 2, 3, 4 }, 2)]
+        [TestCase(2, new int[] { 1, 2, 3, 4 }, 1)]
+        [TestCase(1, new int[] { 1, 2, 3, 4 }, 0)]
+        [TestCase(10, new int[] { 1, 2, 3, 4 }, -1)]
+        public void IndexOfTest(int val, int[] arr, int expected)
         {
-            MyDoublyLL dLL = new MyDoublyLL(arr);
-            return dLL.IndexOf(val);
+            DoublyLinkedList dLL = new DoublyLinkedList(arr);
+            int actual = dLL.IndexOf(val);
+            Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(new int[] { 1, 2, 3, 6 }, ExpectedResult = new int[] { 6, 3, 2, 1 })]
-        [TestCase(new int[] { 7, 8, 9, 10, 11 }, ExpectedResult = new int[] { 11, 10, 9, 8, 7 })]
-        public int[] ReverseTest(int[] arr)
+        [TestCase(new int[] { 1, 2, 3, 4 }, new int[] { 4, 3, 2, 1 })]
+        [TestCase(new int[] { 7, 8, 9, 10, 11 }, new int[] { 11, 10, 9, 8, 7 })]
+        public void ReverseTest(int[] arr, int[] expected)
         {
-            MyDoublyLL dLL = new MyDoublyLL(arr);
+            DoublyLinkedList dLL = new DoublyLinkedList(arr);
             dLL.Reverse();
-            return dLL.ToArray();
+            int[] actual = dLL.ToArray();
+            Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(5, new int[] { 6, 5, 6, 5 }, ExpectedResult = new int[] { 6, 6 })]
-        [TestCase(7, new int[] { 7, 8, 9, 10, 11 }, ExpectedResult = new int[] { 8, 9, 10, 11 })]
-        [TestCase(11, new int[] { 11, 8, 11, 10, 11 }, ExpectedResult = new int[] { 8, 10 })]
-        [TestCase(11, new int[] { }, ExpectedResult = new int[] { })]
-        public int[] RemoveAllTest(int val, int[] arr)
+        [TestCase(3, new int[] { 1, 2, 3, 4, 3}, new int[] { 1, 2, 4 })]
+        [TestCase(7, new int[] { 7, 8, 9, 10, 11 }, new int[] { 8, 9, 10, 11 })]
+        [TestCase(22, new int[] { 22, 13, 22, 7, -7 }, new int[] { 13, 7, -7 })]
+        [TestCase(11, new int[] { }, new int[] { })]
+        public void RemoveAllTest(int val, int[] arr, int[] expected)
         {
-            MyDoublyLL dLL = new MyDoublyLL(arr);
+            DoublyLinkedList dLL = new DoublyLinkedList(arr);
             dLL.RemoveAll(val);
-            return dLL.ToArray();
+            int[] actual = dLL.ToArray();
+            Assert.AreEqual(expected, actual);
+
         }
     }
 }

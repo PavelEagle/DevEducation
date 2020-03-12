@@ -76,12 +76,12 @@ namespace AVLTree
         #endregion
 
         #region Contains
-        public bool Contains (T value)
+        public bool Contains(T value)
         {
             return Find(value) != null;
         }
 
-        private AVLTreeNode<T> Find (T value)
+        private AVLTreeNode<T> Find(T value)
         {
             AVLTreeNode<T> current = Head; // помещаем текущий узел в корень дерева
 
@@ -111,7 +111,7 @@ namespace AVLTree
         #endregion
 
         #region Remove
-        
+
         public bool Remove(T value)
         {
             AVLTreeNode<T> current;
@@ -129,12 +129,17 @@ namespace AVLTree
 
             if (current.Right == null)
             {
-                Head = current.Left; // корень - левый потомок
-
-                if (Head != null)
+                if (current.Parent == null)
                 {
-                    Head.Parent = null; // для нового корня удаляем ссылку на родителя
+                    Head = current.Left; // корень - левый потомок
+
+                    if (Head != null)
+                    {
+                        Head.Parent = null; // для нового корня удаляем ссылку на родителя
+                    }
                 }
+
+
                 else // удаляемый узел не вляется корнем
                 {
                     int result = current.Parent.CompareTo(current.Value);
@@ -160,9 +165,9 @@ namespace AVLTree
             {
                 current.Right.Left = current.Left;
 
-                if (current.Parent != null) // текущий элемент является корнем
+                if (current.Parent == null) // текущий элемент является корнем
                 {
-                    Head.Parent = current.Right;
+                    Head = current.Right;
 
                     if (Head != null)
                     {
@@ -185,7 +190,7 @@ namespace AVLTree
                         //делаем правого потомка текущего элемента правым потомком родителя
                         current.Parent.Right = current.Right;
                     }
-                } 
+                }
             }
 
             // Если правый потомок удаляемого узла имеет левого потомка, 
@@ -217,7 +222,7 @@ namespace AVLTree
                         Head.Parent = null;
                     }
                 }
-                else 
+                else
                 {
                     int result = current.Parent.CompareTo(current.Value);
 
@@ -238,20 +243,29 @@ namespace AVLTree
 
             if (treeToBalance != null)
             {
-                //treeToBalance.Balance();
+                treeToBalance.Balance();
             }
 
             else
             {
                 if (Head != null)
                 {
-                    //Head.Balance();
+                    Head.Balance();
                 }
             }
             return true;
         }
         #endregion
-        public IEnumerator<T> InOrderTraversal()
+
+        #region Clear
+        public void Clear()
+        {
+            Head = null;
+            Count = 0;
+        }
+        #endregion
+
+    public IEnumerator<T> InOrderTraversal()
         {
             if (Head != null)
             {

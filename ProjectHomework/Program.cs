@@ -33,8 +33,7 @@ namespace ProjectHomework
             ll.Add(new LinkedList.Node(3));
             ll.Add(new LinkedList.Node(4));
             ll.Add(new LinkedList.Node(5));
-            ll.PrintList();
-            ll.Reverse();
+            ll.RemoveVal(3);
             ll.PrintList();
         }
 
