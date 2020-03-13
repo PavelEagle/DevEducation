@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cinema;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,77 +7,127 @@ namespace Grafs
 {
     public class GraphTree
     {
-        Node root;
-        bool allowReiteration;
+        Node root, temp;
+        int minTimeLeft = 840, minFilmDuration = 840, countOfHalls, numberOfHall;
 
-        public GraphTree(Node node, bool allowReiteration = true)
+        public GraphTree(Node node, int countOfHalls)
         {
             root = node;
-            this.allowReiteration = allowReiteration;
-
+            this.countOfHalls = countOfHalls;
+            numberOfHall = 1;
+            temp = new Node();
         }
-        public void CreateShedules()
+        public void Create()
         {
-            if (allowReiteration == true) Create(root);
-            else CreateWithNoReiteration(root);
+            CreateNode(root);
         }
-        public void DisplayAnswer()
+        public void DisplayTimeTable()
         {
-            MakeAnswer(root);
+            SearchMinTime(root);
+            PrintTimeTable(root);  
         }
 
 
-        private void CreateWithNoReiteration(Node node)
-        {
-            for (int i = 0; i < node.films.Count; i++) //перебираем сеансы
-            {
-
-                if (node.films[i].filmDuration <= node.Value /*&& !node.list.Contains(node.filmNames[i])*/) //если в рабочем дне осталось время для сеанса
-                {
-
-                    Node newNode; //создаётся новая нода
-
-                    newNode = new Node(node.Value - node.films[i].filmDuration, node.films, node.variantOfShedule + node.films[i].fileNmae + "\n", node.list);
-                    newNode.list.Add(node.films[i].fileNmae); //в её лист
-                    node.Children.Add(newNode); //она добавляется в лист некстов
-
-                    Create(newNode); //и мы спускаемся глубже по ветке, пока не закончится время
-                }
-            }
-        }
-        private void Create(Node node)
+        private void CreateNode(Node node)
         {
             for (int i = 0; i < node.films.Count; i++) //перебираем сеансы
             {
 
-                if ((node.films[i].filmDuration <= node.Value)) //если в рабочем дне осталось время для сеанса
+                if ((node.films[i].filmDuration <= node.timeLeft)) // если осталось время
                 {
 
                     Node newNode; //создаётся новая нода
 
-                    newNode = new Node(node.Value - node.films[i].filmDuration, node.films, node.variantOfShedule + node.films[i].fileNmae + "\n", node.list);
+                    //заполнение времени начала и конца сеанса фильма
+                    List<Seans> seanses = new List<Seans> (node.Seanses);
+                    if (node.Seanses.Count == 0)
+                    {
+                        seanses.Add(new Seans($"{node.films[i].fileName}", new DateTime(2020, 1, 1, 8, 0, 0), 
+                                          new DateTime(2020, 1, 1, 8, 0, 0).AddMinutes(node.films[i].filmDuration) ));
+                    }
+                    else
+                    {
+                        seanses.Add(new Seans($"{node.films[i].fileName}", node.Seanses[node.Seanses.Count - 1].filmEnd, 
+                                        node.Seanses[node.Seanses.Count-1].filmEnd.AddMinutes(node.films[i].filmDuration)));
+                    }
 
-                    node.Children.Add(newNode); //она добавляется в лист некстов
+                    newNode = new Node(node.timeLeft - node.films[i].filmDuration, node.films, seanses, node.list);
 
-                    Create(newNode); //и мы спускаемся глубже по ветке, пока не закончится время
+                    node.Children.Add(newNode); //список дочерних элементов 
+
+                    CreateNode(newNode); //рекурсия, пока не закончится время
                 }
             }
         }
-        private void MakeAnswer(Node node)
-        {
 
-            if (node.films.Count != 0)
+        private bool NodeCompare(Node node1, Node node2)
+        {
+            if (node1.Seanses.Count != node2.Seanses.Count) return false;
+            else 
+            {
+                for (int i = 0; i < node1.Seanses.Count; i++)
+                {
+                    if (node1.Seanses[i].filmName != node2.Seanses[i].filmName)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        private void SearchMinTime(Node node)
+        {
+            if (node.Children.Count != 0)
             {
                 foreach (Node i in node.Children)
                 {
-                    MakeAnswer(i);
-                    //Console.WriteLine($"свободное оставшееся время {i.films.fileNmae} \n");
+                    if (node.timeLeft < root.timeLeft && node.timeLeft < minTimeLeft)
+                    {
+                        minTimeLeft = node.timeLeft;
+                    }
+                    SearchMinTime(i);
+                } 
+            }
+            foreach (Film i in root.films) 
+            {
+                if (i.filmDuration < minFilmDuration)
+                {
+                    minFilmDuration = i.filmDuration;
+                }
+            }
+        } 
+
+        private void PrintTimeTable(Node node)
+        {
+            if (node.Children.Count != 0)
+            {
+                foreach (Node i in node.Children)
+                {
+                    PrintTimeTable(i);
                 }
             }
             else
             {
-                Console.WriteLine(node.variantOfShedule);
-                Console.WriteLine($"свободное оставшееся время {node.Value} \n");
+                while (numberOfHall <= countOfHalls)
+                {
+                    if (node.timeLeft == minTimeLeft - minFilmDuration && !NodeCompare(temp, node))
+                    {
+                        temp = node;
+                        Console.WriteLine($"Расписание в зале № {numberOfHall}:");
+                        for (int i = 0; i < node.Seanses.Count; i++)
+                        {
+                            Console.WriteLine($"{node.Seanses[i].filmStart.ToShortTimeString()} - {node.Seanses[i].filmEnd.ToShortTimeString()} : {node.Seanses[i].filmName}");
+                        }
+                        Console.WriteLine($"свободное оставшееся время: {node.timeLeft} минут \n");
+                        numberOfHall++;
+                    }
+                    if (numberOfHall == countOfHalls)
+                    {
+                        return;
+                    }
+                   
+                }
+                
             }
         }
 

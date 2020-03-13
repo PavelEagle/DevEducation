@@ -2,13 +2,14 @@
 {
     public class Film
     {
-        public string fileNmae { get; set; }
+        public string fileName { get; set; }
         public int filmDuration { get; set; }
 
         public Film(string name, int duration)
         {
-            fileNmae = name;
+            fileName = name;
             filmDuration = duration;
         }
+        public Film () { }
     }
 }

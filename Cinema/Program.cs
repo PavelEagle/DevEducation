@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cinema;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,10 +9,10 @@ namespace Grafs
     {
         static void Main(string[] args)
         {
-            Node mainNod = new Node();
-            Console.WriteLine("Введите общее время работы кинотеатра");
-            int timeLeft = Convert.ToInt32(Console.ReadLine());
-            mainNod.Value = timeLeft;
+            List<Film> films = new List<Film>();
+
+            Console.WriteLine("Введите количество залов в кинотеатре:");
+            int countOfHall = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine("Введите количество фильмов:");
             int count = Convert.ToInt32(Console.ReadLine());
@@ -21,25 +22,13 @@ namespace Grafs
                 string filmName = Console.ReadLine();
                 int filmDuration = Convert.ToInt32(Console.ReadLine());
 
-                mainNod.films.Add(new Film(filmName, filmDuration));
+                films.Add(new Film(filmName, filmDuration));
             }
 
-            GraphTree graphTree = new GraphTree(mainNod);
-            graphTree.CreateShedules();
-            graphTree.DisplayAnswer();
 
-            //Console.WriteLine("Могут ли повторяться фильмы?(да/нет)");
-            //string answ = Console.ReadLine();
-            //bool allowReiteration = false;
-            //if (answ == "да")
-            //{
-            //    allowReiteration = true;
-            //}
-
-
-            //CinemaTimeManager gl = new CinemaTimeManager(new Node(timeLeft, names, duration, "РАСПИСАНИЕ: \n", new List<string>()), allowReiteration);
-            //gl.CreateShedules();
-            //gl.DisplayAnswer();
+            GraphTree graphTree = new GraphTree(new Node(840, films, new List<Seans>(), new List<string>()), countOfHall);
+            graphTree.Create();
+            graphTree.DisplayTimeTable();
         }
     }
 }
