@@ -6,16 +6,15 @@ namespace Cinema
 {
     public class Seans
     {
-        public string filmName { get; set; }
-        public DateTime filmStart { get; set; }
-
-        public DateTime filmEnd { get; set; }
+        public string FilmName { get; set; }
+        public DateTime FilmStart { get; set; }
+        public DateTime FilmEnd { get; set; }
 
         public Seans(string name, DateTime start, DateTime end)
         {
-            filmName = name;
-            filmStart = start;
-            filmEnd = end;
+            FilmName = name;
+            FilmStart = start;
+            FilmEnd = end;
 
         }
         public Seans()

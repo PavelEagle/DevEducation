@@ -8,30 +8,30 @@ namespace Grafs
     public class Node
     {
         // Осталось всего времени
-        public int timeLeft { get; set; }
+        public int TimeLeft { get; set; }
 
         // Список фильмов
-        public List<Film> films { get; set; }
+        public List<Film> Films { get; set; }
 
         // Список дочерних вершин.
         public List<Node> Children { get; set; }
 
-        //Лист для исключения повторений
-        public List<string> list = new List<string>();
+        //Лист записи фильмов
+        public List<string> List { get; set; }
 
         public List<Seans> Seanses { get; set; }
 
         public Node(int timeLeft, List<Film> films, List<Seans> seanses, List<string> list)
         {
-            this.timeLeft = timeLeft;
-            this.films = films;
+            this.TimeLeft = timeLeft;
+            this.Films = films;
             Children = new List<Node>();
             Seanses = seanses;
-            this.list = list;
+            this.List = list;
         }
         public Node()
         {
-            films = new List<Film>();
+            Films = new List<Film>();
             Children = new List<Node>();
             Seanses = new List<Seans>();
         }
