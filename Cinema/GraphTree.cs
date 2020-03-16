@@ -72,7 +72,7 @@ namespace Grafs
         private void CreateListOfTimeTable(Node node)
         {
             if (node.Children.Count != 0)
-            {
+            { 
                 foreach (Node i in node.Children)
                 {
                     CreateListOfTimeTable(i);
@@ -105,7 +105,13 @@ namespace Grafs
                         {
                             break;
                         }
-                        temp.Add(listOfTimetableByHalls[i % root.Films.Count][(int)Math.Floor((double)(i / root.Films.Count))]);
+                        if ((int)Math.Floor((double)(i / root.Films.Count)) < root.Films.Count) {
+                            temp.Add(listOfTimetableByHalls[i % root.Films.Count][(int)Math.Floor((double)(i / root.Films.Count))]);
+                        }
+                        else
+                        {
+                            temp.Add(listOfTimetableByHalls[i % root.Films.Count][root.Films.Count-1]);
+                        }
                     }
                 }
                 listOfTimetableByHalls.Add(temp);
@@ -157,24 +163,60 @@ namespace Grafs
             } 
             else
             {
-                for (int k = 0; k < templistOfTimatable.Count; k++)
+                #region byAll
+                //for (int i = 0; i < listOfAllTimatable.Count - templistOfTimatable.Count; i++)
+                //{
+                //    templistOfTimatable[0] = listOfAllTimatable[i];
+                //    for (int j = i + 1; j < listOfAllTimatable.Count - templistOfTimatable.Count + 1; j++)
+                //    {
+                //        templistOfTimatable[1] = listOfAllTimatable[j];
+                //        if (templistOfTimatable.Count > 2)
+                //        {
+                //            for (int k = i + 2; k < listOfAllTimatable.Count - templistOfTimatable.Count + 2; k++)
+                //            {
+                //                templistOfTimatable[2] = listOfAllTimatable[k];
+                //                if (FilmIsMeet(templistOfTimatable))
+                //                {
+                //                    optimalTimetable = templistOfTimatable;
+                //                    return;
+                //                }
+                //            }
+                //        }
+                //        if (FilmIsMeet(templistOfTimatable))
+                //        {
+                //            optimalTimetable = templistOfTimatable;
+                //            return;
+                //        }
+                //    }
+                //}
+                #endregion
+
+                for (int i = 0; i < listOfTimetableByHalls[0].Count; i++)
                 {
-                    for (int i = 0; i < listOfAllTimatable.Count - 1; i++)
+                    templistOfTimatable[0] = listOfTimetableByHalls[0][i];
+                    for (int j = 0; j < listOfTimetableByHalls[1].Count; j++)
                     {
-                        templistOfTimatable[k] = listOfAllTimatable[i];
-                        for (int j = i + 1; j < listOfAllTimatable.Count; j++)
+                        templistOfTimatable[1] = listOfTimetableByHalls[1][j];
+                        if (templistOfTimatable.Count > 2)
                         {
-                            templistOfTimatable.RemoveAt(templistOfTimatable.Count - 1);
-                            templistOfTimatable.Add(listOfAllTimatable[j]);
-                            if (FilmIsMeet(templistOfTimatable))
+                            for (int k = 0; k < listOfTimetableByHalls[2].Count; k++)
                             {
-                                optimalTimetable = templistOfTimatable;
-                                return;
+                                templistOfTimatable[2] = listOfTimetableByHalls[2][k];
+                                if (FilmIsMeet(templistOfTimatable))
+                                {
+                                    optimalTimetable = templistOfTimatable;
+                                    return;
+                                }
                             }
+                        }
+                        if (FilmIsMeet(templistOfTimatable))
+                        {
+                            optimalTimetable = templistOfTimatable;
+                            return;
                         }
                     }
                 }
-              
+
             }
             optimalTimetable = new List<Node>();
         }
