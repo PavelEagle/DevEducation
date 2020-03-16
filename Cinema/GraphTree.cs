@@ -28,7 +28,7 @@ namespace Grafs
         public void DisplayTimeTable()
         {
             CreateListOfTimeTable(root); // создаем список всех возможных вариантов
-            CreateListOfHalls(); // распределяем листы по залам
+            CreateListOfTimetableByHalls(); // распределяем листы по залам
             CreateTempList(); // создаем первый вариант расписания
             OptimalTimetable(templistOfTimatable); // ищем оптимальное расписание
             Print(optimalTimetable); // выводим его
@@ -85,7 +85,7 @@ namespace Grafs
             listOfAllTimatable = listOfAllTimatable.OrderBy(u => u.TimeLeft).ToList<Node>();
         }
 
-        private void CreateListOfHalls()
+        private void CreateListOfTimetableByHalls()
         {
             for (int i = 0; i < countOfHalls; i++)
             {
@@ -105,7 +105,9 @@ namespace Grafs
                         {
                             break;
                         }
-                        if ((int)Math.Floor((double)(i / root.Films.Count)) < root.Films.Count) {
+
+                        if ((int)Math.Floor((double)(i / root.Films.Count)) < root.Films.Count) 
+                        {
                             temp.Add(listOfTimetableByHalls[i % root.Films.Count][(int)Math.Floor((double)(i / root.Films.Count))]);
                         }
                         else
@@ -116,33 +118,6 @@ namespace Grafs
                 }
                 listOfTimetableByHalls.Add(temp);
             }
-        }
-
-        private bool FilmIsMeet(List<Node> list)
-        {
-            bool isOk = true;
-            bool[] filmsIsMet = new bool[root.Films.Count];
-
-            for (int i = 0; i < root.Films.Count; i++)
-            {
-                foreach (Node nod in list)
-                {
-                    for (int j = 0; j < nod.Seanses.Count; j++)
-                    {
-                        if (nod.Seanses[j].FilmName == root.Films[i].FileName)
-                        {
-                            filmsIsMet[i] = true;
-                            break;
-                        }
-                    }
-                }
-            }
-
-            for (int i = 0; i < filmsIsMet.Count(); i++)
-            {
-                isOk = isOk && filmsIsMet[i];
-            }
-            return isOk;
         }
 
         private void CreateTempList()
@@ -220,6 +195,7 @@ namespace Grafs
             }
             optimalTimetable = new List<Node>();
         }
+
         private void Print(List<Node> optimalTimetable)
         {
             if (optimalTimetable.Count == 0)
@@ -248,6 +224,32 @@ namespace Grafs
                 }     
             }       
 
-        }      
+        }
+        private bool FilmIsMeet(List<Node> list)
+        {
+            bool isOk = true;
+            bool[] filmsIsMet = new bool[root.Films.Count];
+
+            for (int i = 0; i < root.Films.Count; i++)
+            {
+                foreach (Node nod in list)
+                {
+                    for (int j = 0; j < nod.Seanses.Count; j++)
+                    {
+                        if (nod.Seanses[j].FilmName == root.Films[i].FileName)
+                        {
+                            filmsIsMet[i] = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            for (int i = 0; i < filmsIsMet.Count(); i++)
+            {
+                isOk = isOk && filmsIsMet[i];
+            }
+            return isOk;
+        }
     }
 }
