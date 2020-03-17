@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Grafs
 {
@@ -12,6 +11,7 @@ namespace Grafs
         int countOfHalls, numberOfHall;
         List<Node> listOfAllTimatable, optimalTimetable, templistOfTimatable;
         List<List<Node>> listOfTimetableByHalls;
+        bool canCreate = true;
 
         public GraphTree(Node node, int countOfHalls)
         {
@@ -23,7 +23,7 @@ namespace Grafs
         }
         public void Create()
         {
-            CreateNode(root);
+            CreateTree(root);
         }
         public void DisplayTimeTable()
         {
@@ -35,7 +35,7 @@ namespace Grafs
         }
 
 
-        private void CreateNode(Node node)
+        private void CreateTree(Node node)
         {
             for (int i = 0; i < node.Films.Count; i++) //перебираем сеансы 
             {
@@ -45,7 +45,7 @@ namespace Grafs
 
                     Node newNode; //создаётся новая нода
 
-                    //заполнение времени начала и конца сеанса фильма
+                    //заполнение сеанса фильма
                     List<Seans> seanses = new List<Seans> (node.Seanses);
                     if (node.Seanses.Count == 0)
                     {
@@ -58,12 +58,11 @@ namespace Grafs
                                         node.Seanses[node.Seanses.Count-1].FilmEnd.AddMinutes(node.Films[i].FilmDuration)));
                     }
 
-                    newNode = new Node(node.TimeLeft - node.Films[i].FilmDuration, node.Films, seanses, node.List);
-                    //newNode.Films[i].IsMeet = true;
+                    newNode = new Node(node.TimeLeft - node.Films[i].FilmDuration, node.Films, seanses);
 
                     node.Children.Add(newNode); //список дочерних элементов 
 
-                    CreateNode(newNode); //рекурсия, пока не закончится время
+                    CreateTree(newNode); //рекурсия, пока не закончится время
                 }
             }
         }
@@ -82,7 +81,7 @@ namespace Grafs
             {
                 listOfAllTimatable.Add(node);
             }
-            listOfAllTimatable = listOfAllTimatable.OrderBy(u => u.TimeLeft).ToList<Node>();
+            listOfAllTimatable = listOfAllTimatable.OrderBy(u => u.TimeLeft).ToList();
         }
 
         private void CreateListOfTimetableByHalls()
@@ -112,7 +111,8 @@ namespace Grafs
                         }
                         else
                         {
-                            temp.Add(listOfTimetableByHalls[i % root.Films.Count][root.Films.Count-1]);
+                            canCreate = false;
+                            temp.Add(listOfTimetableByHalls[i % root.Films.Count][root.Films.Count - 1]);
                         }
                     }
                 }
@@ -131,6 +131,7 @@ namespace Grafs
 
         private void OptimalTimetable (List<Node> templistOfTimatable)
         {
+            optimalTimetable = new List<Node>();
             if (FilmIsMeet(templistOfTimatable))
             {
                 optimalTimetable = templistOfTimatable;
@@ -191,14 +192,13 @@ namespace Grafs
                         }
                     }
                 }
-
             }
-            optimalTimetable = new List<Node>();
         }
+
 
         private void Print(List<Node> optimalTimetable)
         {
-            if (optimalTimetable.Count == 0)
+            if (optimalTimetable.Count == 0 || !canCreate)
             {
                 Console.WriteLine();
                 Console.WriteLine("nope");

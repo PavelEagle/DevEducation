@@ -52,7 +52,7 @@ namespace Grafs
             }
 
 
-            GraphTree graphTree = new GraphTree(new Node(840, films, new List<Seans>(), new List<string>()), countOfHall);
+            GraphTree graphTree = new GraphTree(new Node(840, films, new List<Seans>()), countOfHall);
             graphTree.Create();
             graphTree.DisplayTimeTable();
         }

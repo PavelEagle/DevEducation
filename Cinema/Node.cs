@@ -16,18 +16,14 @@ namespace Grafs
         // Список дочерних вершин.
         public List<Node> Children { get; set; }
 
-        //Лист записи фильмов
-        public List<string> List { get; set; }
-
         public List<Seans> Seanses { get; set; }
 
-        public Node(int timeLeft, List<Film> films, List<Seans> seanses, List<string> list)
+        public Node(int timeLeft, List<Film> films, List<Seans> seanses)
         {
             this.TimeLeft = timeLeft;
             this.Films = films;
             Children = new List<Node>();
             Seanses = seanses;
-            this.List = list;
         }
         public Node()
         {
