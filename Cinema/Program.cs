@@ -27,8 +27,17 @@ namespace Grafs
                 Console.WriteLine("Введите количество фильмов:");
                 while (Int32.TryParse(Console.ReadLine(), out int result))
                 {
-                    countOfFilms = result;
-                    break;
+                    if (result > 1)
+                    {
+                        countOfFilms = result;
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Введите количество фильмов > 1:");
+                        continue;
+                    }
+                    
                 }
             }
 
